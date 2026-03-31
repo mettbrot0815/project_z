@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid-ui-panel-scene"]
+
+[resource_type "PackedScene" uid="ui-panel-scene"]
+resource = PackedScene.new()
+script = SubResource.new()
+
+[resource_type "SubResource" uid="ui-panel-scene"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="ui-panel-scene-1"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="panel-1"]
+sub_resource/sub_type = "PanelContainer"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="panel-2"]
+sub_resource/sub_type = "PanelContainer"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="label-1"]
+sub_resource/sub_type = "Label"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="label-2"]
+sub_resource/sub_type = "Label"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="label-3"]
+sub_resource/sub_type = "Label"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[gd_scene load_steps=1 format=3]
+[ext_resource type="PackedScene" uid="ui-panel-scene-1" path="res://scenes/UIPanel.tscn::UIPanel"]
+[ext_resource type="PackedScene" uid="panel-1" path="res://scenes/UIPanel.tscn::PanelContainer"]
+[ext_resource type="PackedScene" uid="panel-2" path="res://scenes/UIPanel.tscn::PanelContainer"]
+[ext_resource type="PackedScene" uid="label-1" path="res://scenes/UIPanel.tscn::Label"]
+[ext_resource type="PackedScene" uid="label-2" path="res://scenes/UIPanel.tscn::Label"]
+[ext_resource type="PackedScene" uid="label-3" path="res://scenes/UIPanel.tscn::Label"]
+
+[node name="UIPanel" type="Control" instance=resource://ui-panel-scene-1]
+[node name="PanelContainer" type="PanelContainer" instance=resource://panel-1]
+[node name="PanelContainer" type="PanelContainer" instance=resource://panel-2]
+[node name="Label" type="Label" instance=resource://label-1]
+[node name="Label" type="Label" instance=resource://label-2]
+[node name="Label" type="Label" instance=resource://label-3]

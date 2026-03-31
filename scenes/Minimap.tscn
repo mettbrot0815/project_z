@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid-minimap-scene"]
+
+[resource_type "PackedScene" uid="minimap-scene"]
+resource = PackedScene.new()
+script = SubResource.new()
+
+[resource_type "SubResource" uid="minimap-scene"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="minimap-scene-1"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="control-1"]
+sub_resource/sub_type = "Control"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="texture-1"]
+sub_resource/sub_type = "TextureRect"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="texture-2"]
+sub_resource/sub_type = "TextureRect"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="color-1"]
+sub_resource/sub_type = "ColorRect"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="color-2"]
+sub_resource/sub_type = "ColorRect"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[gd_scene load_steps=1 format=3]
+[ext_resource type="PackedScene" uid="minimap-scene-1" path="res://scenes/Minimap.tscn::Minimap"]
+[ext_resource type="PackedScene" uid="control-1" path="res://scenes/Minimap.tscn::Control"]
+[ext_resource type="PackedScene" uid="texture-1" path="res://scenes/Minimap.tscn::TextureRect"]
+[ext_resource type="PackedScene" uid="texture-2" path="res://scenes/Minimap.tscn::TextureRect"]
+[ext_resource type="PackedScene" uid="color-1" path="res://scenes/Minimap.tscn::ColorRect"]
+[ext_resource type="PackedScene" uid="color-2" path="res://scenes/Minimap.tscn::ColorRect"]
+
+[node name="Minimap" type="CanvasLayer" instance=resource://minimap-scene-1]
+[node name="Control" type="Control" instance=resource://control-1]
+[node name="TextureRect" type="TextureRect" instance=resource://texture-1]
+[node name="TextureRect" type="TextureRect" instance=resource://texture-2]
+[node name="ColorRect" type="ColorRect" instance=resource://color-1]
+[node name="ColorRect" type="ColorRect" instance=resource://color-2]

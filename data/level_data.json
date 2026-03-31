@@ -1,0 +1,322 @@
+[
+	{
+		"level_index": 0,
+		"level_name": "Desert Outpost",
+		"planet": "desert",
+		"map_size": [100, 80],
+		"red_fort": [50, 50],
+		"blue_fort": [150, 150],
+		"starting_units": {"grunt": 3},
+		"flags": [
+			{"id": "flag_1", "x": 30, "y": 30, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 70, "y": 70, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 1,
+		"level_name": "Oasis Campaign",
+		"planet": "desert",
+		"map_size": [120, 100],
+		"red_fort": [60, 60],
+		"blue_fort": [140, 140],
+		"starting_units": {"grunt": 4},
+		"flags": [
+			{"id": "flag_1", "x": 40, "y": 40, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_2", "x": 80, "y": 40, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_3", "x": 60, "y": 80, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 2,
+		"level_name": "Sandstorm",
+		"planet": "desert",
+		"map_size": [150, 120],
+		"red_fort": [75, 60],
+		"blue_fort": [125, 100],
+		"starting_units": {"grunt": 3, "psycho": 2},
+		"flags": [
+			{"id": "flag_1", "x": 50, "y": 50, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 100, "y": 60, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 75, "y": 100, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 25, "y": 75, "neutral": true, "structures": ["gatling"]}
+		]
+	},
+	{
+		"level_index": 3,
+		"level_name": "Dune Wars",
+		"planet": "desert",
+		"map_size": [180, 140],
+		"red_fort": [90, 70],
+		"blue_fort": [130, 120],
+		"starting_units": {"grunt": 4, "psycho": 3},
+		"flags": [
+			{"id": "flag_1", "x": 60, "y": 60, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_2", "x": 110, "y": 80, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_3", "x": 75, "y": 120, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 40, "y": 100, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_5", "x": 140, "y": 50, "neutral": true, "structures": ["gatling"]}
+		]
+	},
+	{
+		"level_index": 4,
+		"level_name": "Final Sands",
+		"planet": "desert",
+		"map_size": [200, 160],
+		"red_fort": [100, 80],
+		"blue_fort": [150, 140],
+		"starting_units": {"grunt": 5, "psycho": 3},
+		"flags": [
+			{"id": "flag_1", "x": 70, "y": 70, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 120, "y": 90, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 85, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 50, "y": 120, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_5", "x": 160, "y": 60, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 5,
+		"level_name": "Lava Flow",
+		"planet": "volcanic",
+		"map_size": [180, 140],
+		"red_fort": [90, 70],
+		"blue_fort": [130, 120],
+		"starting_units": {"tough": 4, "grunt": 3},
+		"flags": [
+			{"id": "flag_1", "x": 60, "y": 60, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_2", "x": 110, "y": 80, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 75, "y": 120, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_4", "x": 40, "y": 100, "neutral": true, "structures": ["howitzer"]}
+		]
+	},
+	{
+		"level_index": 6,
+		"level_name": "Crater Field",
+		"planet": "volcanic",
+		"map_size": [200, 160],
+		"red_fort": [100, 80],
+		"blue_fort": [150, 140],
+		"starting_units": {"tough": 5, "grunt": 4},
+		"flags": [
+			{"id": "flag_1", "x": 70, "y": 70, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_2", "x": 120, "y": 90, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_3", "x": 85, "y": 140, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_4", "x": 50, "y": 120, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_5", "x": 160, "y": 60, "neutral": true, "structures": ["howitzer"]}
+		]
+	},
+	{
+		"level_index": 7,
+		"level_name": "Eruption",
+		"planet": "volcanic",
+		"map_size": [220, 180],
+		"red_fort": [110, 90],
+		"blue_fort": [160, 150],
+		"starting_units": {"tough": 6, "grunt": 5},
+		"flags": [
+			{"id": "flag_1", "x": 80, "y": 80, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 130, "y": 100, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 95, "y": 160, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 60, "y": 140, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_5", "x": 170, "y": 70, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 8,
+		"level_name": "Ice Fields",
+		"planet": "arctic",
+		"map_size": [200, 160],
+		"red_fort": [100, 80],
+		"blue_fort": [150, 140],
+		"starting_units": {"laser": 4, "grunt": 3},
+		"flags": [
+			{"id": "flag_1", "x": 70, "y": 70, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_2", "x": 120, "y": 90, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_3", "x": 85, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 50, "y": 120, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 9,
+		"level_name": "Glacier Fortress",
+		"planet": "arctic",
+		"map_size": [220, 180],
+		"red_fort": [110, 90],
+		"blue_fort": [160, 150],
+		"starting_units": {"laser": 5, "tough": 4},
+		"flags": [
+			{"id": "flag_1", "x": 80, "y": 80, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_2", "x": 130, "y": 100, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 95, "y": 160, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_4", "x": 60, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_5", "x": 170, "y": 70, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 10,
+		"level_name": "Frost Bite",
+		"planet": "arctic",
+		"map_size": [240, 200],
+		"red_fort": [120, 100],
+		"blue_fort": [170, 160],
+		"starting_units": {"laser": 6, "tough": 5},
+		"flags": [
+			{"id": "flag_1", "x": 90, "y": 90, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 140, "y": 110, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 105, "y": 180, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 70, "y": 160, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_5", "x": 180, "y": 80, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_6", "x": 30, "y": 120, "neutral": true, "structures": ["howitzer"]}
+		]
+	},
+	{
+		"level_index": 11,
+		"level_name": "Ice Age",
+		"planet": "arctic",
+		"map_size": [260, 220],
+		"red_fort": [130, 110],
+		"blue_fort": [180, 170],
+		"starting_units": {"sniper": 4, "laser": 5, "tough": 5},
+		"flags": [
+			{"id": "flag_1", "x": 100, "y": 100, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_2", "x": 150, "y": 120, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_3", "x": 115, "y": 200, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_4", "x": 80, "y": 180, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_5", "x": 190, "y": 90, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_6", "x": 40, "y": 130, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_7", "x": 20, "y": 160, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 12,
+		"level_name": "Rainforest Rush",
+		"planet": "jungle",
+		"map_size": [200, 160],
+		"red_fort": [100, 80],
+		"blue_fort": [150, 140],
+		"starting_units": {"psycho": 5, "grunt": 4},
+		"flags": [
+			{"id": "flag_1", "x": 70, "y": 70, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 120, "y": 90, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 85, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 50, "y": 120, "neutral": true, "structures": ["gatling"]}
+		]
+	},
+	{
+		"level_index": 13,
+		"level_name": "Canopy War",
+		"planet": "jungle",
+		"map_size": [220, 180],
+		"red_fort": [110, 90],
+		"blue_fort": [160, 150],
+		"starting_units": {"psycho": 6, "tough": 5},
+		"flags": [
+			{"id": "flag_1", "x": 80, "y": 80, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_2", "x": 130, "y": 100, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_3", "x": 95, "y": 160, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_4", "x": 60, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_5", "x": 170, "y": 70, "neutral": true, "structures": ["gatling"]}
+		]
+	},
+	{
+		"level_index": 14,
+		"level_name": "Amazon Ambush",
+		"planet": "jungle",
+		"map_size": [240, 200],
+		"red_fort": [120, 100],
+		"blue_fort": [170, 160],
+		"starting_units": {"sniper": 5, "psycho": 6, "tough": 5},
+		"flags": [
+			{"id": "flag_1", "x": 90, "y": 90, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_2", "x": 140, "y": 110, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_3", "x": 105, "y": 180, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_4", "x": 70, "y": 160, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_5", "x": 180, "y": 80, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_6", "x": 40, "y": 120, "neutral": true, "structures": ["gatling"]}
+		]
+	},
+	{
+		"level_index": 15,
+		"level_name": "Urban Assault",
+		"planet": "city",
+		"map_size": [200, 160],
+		"red_fort": [100, 80],
+		"blue_fort": [150, 140],
+		"starting_units": {"sniper": 4, "laser": 5},
+		"flags": [
+			{"id": "flag_1", "x": 70, "y": 70, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_2", "x": 120, "y": 90, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_3", "x": 85, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 50, "y": 120, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 16,
+		"level_name": "Skyscraper Siege",
+		"planet": "city",
+		"map_size": [220, 180],
+		"red_fort": [110, 90],
+		"blue_fort": [160, 150],
+		"starting_units": {"sniper": 6, "laser": 6},
+		"flags": [
+			{"id": "flag_1", "x": 80, "y": 80, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_2", "x": 130, "y": 100, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 95, "y": 160, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_4", "x": 60, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_5", "x": 170, "y": 70, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 17,
+		"level_name": "Metro Mayhem",
+		"planet": "city",
+		"map_size": [240, 200],
+		"red_fort": [120, 100],
+		"blue_fort": [170, 160],
+		"starting_units": {"sniper": 7, "laser": 6, "tough": 5},
+		"flags": [
+			{"id": "flag_1", "x": 90, "y": 90, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 140, "y": 110, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 105, "y": 180, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 70, "y": 160, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_5", "x": 180, "y": 80, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_6", "x": 40, "y": 120, "neutral": true, "structures": ["howitzer"]}
+		]
+	},
+	{
+		"level_index": 18,
+		"level_name": "Tower Takeover",
+		"planet": "city",
+		"map_size": [260, 220],
+		"red_fort": [130, 110],
+		"blue_fort": [180, 170],
+		"starting_units": {"sniper": 8, "laser": 7, "tough": 6},
+		"flags": [
+			{"id": "flag_1", "x": 100, "y": 100, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_2", "x": 150, "y": 120, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_3", "x": 115, "y": 200, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_4", "x": 80, "y": 180, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_5", "x": 190, "y": 90, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_6", "x": 40, "y": 130, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_7", "x": 20, "y": 160, "neutral": true, "structures": ["turret"]}
+		]
+	},
+	{
+		"level_index": 19,
+		"level_name": "Neon Revolution",
+		"planet": "city",
+		"map_size": [300, 240],
+		"red_fort": [150, 120],
+		"blue_fort": [200, 200],
+		"starting_units": {"sniper": 8, "laser": 8, "tough": 7, "psycho": 6},
+		"flags": [
+			{"id": "flag_1", "x": 120, "y": 120, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_2", "x": 170, "y": 140, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_3", "x": 135, "y": 220, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_4", "x": 100, "y": 200, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_5", "x": 210, "y": 100, "neutral": true, "structures": ["turret"]},
+			{"id": "flag_6", "x": 60, "y": 140, "neutral": true, "structures": ["howitzer"]},
+			{"id": "flag_7", "x": 30, "y": 170, "neutral": true, "structures": ["gatling"]},
+			{"id": "flag_8", "x": 230, "y": 220, "neutral": true, "structures": ["turret"]}
+		]
+	}
+]

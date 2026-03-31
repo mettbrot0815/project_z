@@ -1,0 +1,117 @@
+[gd_scene load_steps=16 format=3 uid="uid-main-scene"]
+
+[resource_type "SubResource" uid="sector-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[sub_resource]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="sector-2"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="unit-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="factory-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="hud-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="minimap-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="ui-panel-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="unit-panel-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="particle-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="camera-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="game-manager-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="sector-manager-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="input-handler-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="unit-ai-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="ai-controller-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[resource_type "SubResource" uid="game-ui-1"]
+sub_resource/id = "SUB_RESOURCE"
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+
+[gd_scene load_steps=1 format=3]
+[ext_resource type="PackedScene" uid="game-manager-1" path="res://scenes/Main.tscn::GameManager"]
+[ext_resource type="PackedScene" uid="sector-manager-1" path="res://scenes/Main.tscn::SectorManager"]
+[ext_resource type="PackedScene" uid="input-handler-1" path="res://scenes/Main.tscn::InputHandler"]
+[ext_resource type="PackedScene" uid="unit-ai-1" path="res://scenes/Main.tscn::UnitAI"]
+[ext_resource type="PackedScene" uid="ai-controller-1" path="res://scenes/Main.tscn::AIController"]
+[ext_resource type="PackedScene" uid="hud-1" path="res://scenes/Main.tscn::HUD"]
+[ext_resource type="PackedScene" uid="minimap-1" path="res://scenes/Main.tscn::Minimap"]
+[ext_resource type="PackedScene" uid="ui-panel-1" path="res://scenes/Main.tscn::UIPanel"]
+[ext_resource type="PackedScene" uid="unit-panel-1" path="res://scenes/Main.tscn::UnitPanel"]
+[ext_resource type="PackedScene" uid="camera-1" path="res://scenes/Main.tscn::Camera2D"]
+[ext_resource type="PackedScene" uid="particle-1" path="res://scenes/Main.tscn::ParticleSystem2D"]
+[ext_resource type="PackedScene" uid="factory-1" path="res://scenes/Main.tscn::Factory"]
+[ext_resource type="PackedScene" uid="unit-1" path="res://scenes/Main.tscn::Unit"]
+
+[node name="GameManager" type="Node" instance=resource://game-manager-1]
+[node name="SectorManager" type="Node" instance=resource://sector-manager-1]
+[node name="InputHandler" type="Node" instance=resource://input-handler-1]
+[node name="UnitAI" type="Node" instance=resource://unit-ai-1]
+[node name="AIController" type="Node" instance=resource://ai-controller-1]
+[node name="GameUI" type="Node" instance=resource://game-ui-1]
+[node name="Level" type="Node" instance=SubResource_PackedScene_new()]
+[node name="Camera2D" type="Camera2D" instance=resource://camera-1]
+[node name="UIPanel" type="Control" instance=resource://ui-panel-1]
+[node name="Minimap" type="CanvasLayer" instance=resource://minimap-1]
+[node name="UnitPanel" type="Control" instance=resource://unit-panel-1]
+[node name="HUD" type="CanvasLayer" instance=resource://hud-1]
+[node name="ParticleSystem2D" type="ParticleSystem2D" instance=resource://particle-1]
+[node name="Factory" type="Node2D" instance=resource://factory-1]
+[node name="Unit" type="Node2D" instance=resource://unit-1]

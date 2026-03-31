@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid-hud-scene"]
+
+[resource_type "PackedScene" uid="hud-scene"]
+resource = PackedScene.new()
+script = SubResource.new()
+
+[resource_type "SubResource" uid="hud-scene"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="hud-scene-1"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="canvas-layer-1"]
+sub_resource/sub_type = "CanvasLayer"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="control-1"]
+sub_resource/sub_type = "Control"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="control-2"]
+sub_resource/sub_type = "Control"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="control-3"]
+sub_resource/sub_type = "Control"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="label-1"]
+sub_resource/sub_type = "Label"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="label-2"]
+sub_resource/sub_type = "Label"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="label-3"]
+sub_resource/sub_type = "Label"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[gd_scene load_steps=1 format=3]
+[ext_resource type="PackedScene" uid="hud-scene-1" path="res://scenes/HUD.tscn::HUD"]
+[ext_resource type="PackedScene" uid="canvas-layer-1" path="res://scenes/HUD.tscn::CanvasLayer"]
+[ext_resource type="PackedScene" uid="control-1" path="res://scenes/HUD.tscn::Control"]
+[ext_resource type="PackedScene" uid="control-2" path="res://scenes/HUD.tscn::Control"]
+[ext_resource type="PackedScene" uid="control-3" path="res://scenes/HUD.tscn::Control"]
+[ext_resource type="PackedScene" uid="label-1" path="res://scenes/HUD.tscn::Label"]
+[ext_resource type="PackedScene" uid="label-2" path="res://scenes/HUD.tscn::Label"]
+[ext_resource type="PackedScene" uid="label-3" path="res://scenes/HUD.tscn::Label"]
+
+[node name="HUD" type="CanvasLayer" instance=resource://hud-scene-1]
+[node name="CanvasLayer" type="CanvasLayer" instance=resource://canvas-layer-1]
+[node name="Control" type="Control" instance=resource://control-1]
+[node name="Control" type="Control" instance=resource://control-2]
+[node name="Control" type="Control" instance=resource://control-3]
+[node name="Label" type="Label" instance=resource://label-1]
+[node name="Label" type="Label" instance=resource://label-2]
+[node name="Label" type="Label" instance=resource://label-3]

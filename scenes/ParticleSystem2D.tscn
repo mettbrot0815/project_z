@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid-particle-scene"]
+
+[resource_type "PackedScene" uid="particle-scene"]
+resource = PackedScene.new()
+script = SubResource.new()
+
+[resource_type "SubResource" uid="particle-scene"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="particle-scene-1"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="particle-system-2d-1"]
+sub_resource/sub_type = "ParticleSystem2D"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="particle-system-2d-2"]
+sub_resource/sub_type = "ParticleSystem2D"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[gd_scene load_steps=1 format=3]
+[ext_resource type="PackedScene" uid="particle-scene-1" path="res://scenes/ParticleSystem2D.tscn::ParticleSystem2D"]
+[ext_resource type="PackedScene" uid="particle-system-2d-1" path="res://scenes/ParticleSystem2D.tscn::ParticleSystem2D"]
+[ext_resource type="PackedScene" uid="particle-system-2d-2" path="res://scenes/ParticleSystem2D.tscn::ParticleSystem2D"]
+
+[node name="ParticleSystem2D" type="ParticleSystem2D" instance=resource://particle-scene-1]
+[node name="ParticleSystem2D" type="ParticleSystem2D" instance=resource://particle-system-2d-1]
+[node name="ParticleSystem2D" type="ParticleSystem2D" instance=resource://particle-system-2d-2]

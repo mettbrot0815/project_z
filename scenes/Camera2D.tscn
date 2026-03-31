@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid-camera-scene"]
+
+[resource_type "PackedScene" uid="camera-scene"]
+resource = PackedScene.new()
+script = SubResource.new()
+
+[resource_type "SubResource" uid="camera-scene"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="camera-scene-1"]
+sub_resource/sub_type = "PackedScene"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="camera-2d-1"]
+sub_resource/sub_type = "Camera2D"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[resource_type "SubResource" uid="camera-2d-2"]
+sub_resource/sub_type = "Camera2D"
+sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+sub_resource/id = "SUB_RESOURCE"
+
+[gd_scene load_steps=1 format=3]
+[ext_resource type="PackedScene" uid="camera-scene-1" path="res://scenes/Camera2D.tscn::Camera2D"]
+[ext_resource type="PackedScene" uid="camera-2d-1" path="res://scenes/Camera2D.tscn::Camera2D"]
+[ext_resource type="PackedScene" uid="camera-2d-2" path="res://scenes/Camera2D.tscn::Camera2D"]
+
+[node name="Camera2D" type="Camera2D" instance=resource://camera-scene-1]
+[node name="Camera2D" type="Camera2D" instance=resource://camera-2d-1]
+[node name="Camera2D" type="Camera2D" instance=resource://camera-2d-2]
