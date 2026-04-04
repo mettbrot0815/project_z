@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Howitzer - stationary artillery, high damage, splash, slow reload
 
@@ -58,7 +58,7 @@ func find_priority_target() -> Node2D:
 
 	# Fall back to buildings
 	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
-		return b.owner != owner and b.hp > 0
+		return b.unit.team != self.team and b.hp > 0
 	)
 
 	if buildings.size() > 0:
@@ -72,7 +72,7 @@ func find_priority_target() -> Node2D:
 
 func find_enemy_groups() -> Array:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0
+		return unit.team != owner and unit.hp > 0
 	)
 
 	var groups = []
@@ -93,7 +93,7 @@ func find_enemy_groups() -> Array:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.team != owner and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:

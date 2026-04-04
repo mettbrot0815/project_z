@@ -13,7 +13,7 @@ signal production_completed(unit: Node2D)
 var current_build: String = ""
 var build_progress: float = 0.0
 var is_producing: bool = false
-var owner: int = 0
+var team_owner: int = 0
 
 var production_queue: Array[String] = []
 
@@ -23,8 +23,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_producing and owner != TerritoryManager.Owner.NEUTRAL:
-		var speed = TerritoryManager.get_production_speed_for_owner(owner)
+	if is_producing and team_owner != TerritoryManager.Team.NEUTRAL:
+		var speed = TerritoryManager.get_production_speed_for_owner(team_owner)
 		build_progress += delta * speed
 		
 		if build_progress >= base_production_time:
@@ -49,8 +49,8 @@ func complete_production() -> void:
 	var unit_scene = load("res://scenes/units/%s.tscn" % current_build)
 	if unit_scene:
 		var unit = unit_scene.instantiate()
-		unit.owner = owner
-		unit.global_position = global_position + Vector2(RANDF_RANGE(-32, 32), 0)
+		unit.team = team_owner
+		unit.global_position = global_position + Vector2(randf_range(-32, 32), 0)
 		get_parent().add_child(unit)
 		production_completed.emit(unit)
 	

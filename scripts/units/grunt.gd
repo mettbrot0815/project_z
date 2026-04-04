@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Grunt - lowest intelligence, fastest, weakest
 
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.team != owner and unit.hp > 0 and unit != self
 	)
 	
 	if enemies.size() == 0:

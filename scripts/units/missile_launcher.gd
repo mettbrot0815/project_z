@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # Mobile Missile Launcher - long range, high damage, slow reload
 
@@ -21,6 +21,10 @@ func _process(delta: float) -> void:
 	if not driver_alive:
 		return
 
+	# Missile launcher AI: Move toward high-value targets
+	if intelligence > 0:
+		_find_high_value_target()
+
 	last_fired += delta
 
 	if last_fired >= fire_rate:
@@ -33,7 +37,7 @@ func _process(delta: float) -> void:
 func find_priority_target() -> Node2D:
 	# Missile launcher prioritizes buildings and groups
 	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
-		return b.owner != owner and b.hp > 0
+		return b.unit.team != self.team and b.hp > 0
 	)
 
 	if buildings.size() > 0:
@@ -52,7 +56,7 @@ func find_priority_target() -> Node2D:
 
 func find_enemy_groups() -> Array:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0
+		return unit.team != owner and unit.hp > 0
 	)
 
 	var groups = []
@@ -73,7 +77,7 @@ func find_enemy_groups() -> Array:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.team != owner and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -84,6 +88,31 @@ func find_nearest_enemy() -> Node2D:
 	)
 
 	return enemies[0]
+
+
+func _find_high_value_target() -> void:
+	# Prioritize buildings
+	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
+		return b.unit.team != self.team and b.hp > 0
+	)
+
+	if buildings.size() > 0:
+		buildings.sort_custom(func(a, b):
+			return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+		)
+		move_to(buildings[0].global_position)
+		return
+
+	# Then enemy groups
+	var enemy_groups = find_enemy_groups()
+	if enemy_groups.size() > 0:
+		move_to(enemy_groups[0]["center"])
+		return
+
+	# Fallback to nearest enemy
+	var enemy = find_nearest_enemy()
+	if enemy:
+		move_to(enemy.global_position)
 
 
 func die(killer: Node2D) -> void:
