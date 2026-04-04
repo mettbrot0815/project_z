@@ -1,0 +1,116 @@
+{
+  "robots": {
+    "grunt": {
+      "name": "Grunt",
+      "max_hp": 50,
+      "damage": 8,
+      "move_speed": 140,
+      "intelligence": 0,
+      "fire_rate": 0.8,
+      "build_time": 5.0
+    },
+    "psycho": {
+      "name": "Psycho",
+      "max_hp": 65,
+      "damage": 6,
+      "move_speed": 120,
+      "intelligence": 1,
+      "fire_rate": 0.15,
+      "build_time": 7.0
+    },
+    "tough": {
+      "name": "Tough",
+      "max_hp": 100,
+      "damage": 12,
+      "move_speed": 90,
+      "intelligence": 2,
+      "fire_rate": 0.6,
+      "build_time": 10.0
+    },
+    "sniper": {
+      "name": "Sniper",
+      "max_hp": 45,
+      "damage": 75,
+      "move_speed": 85,
+      "intelligence": 3,
+      "fire_rate": 2.2,
+      "build_time": 12.0,
+      "prioritizes_drivers": true
+    },
+    "laser": {
+      "name": "Laser",
+      "max_hp": 75,
+      "damage": 20,
+      "move_speed": 100,
+      "intelligence": 4,
+      "fire_rate": 0.4,
+      "build_time": 15.0
+    },
+    "commander": {
+      "name": "Commander",
+      "max_hp": 150,
+      "damage": 25,
+      "move_speed": 70,
+      "intelligence": 5,
+      "fire_rate": 0.5,
+      "build_time": 20.0
+    }
+  },
+  "vehicles": {
+    "jeep": {
+      "name": "Jeep",
+      "max_hp": 80,
+      "damage": 10,
+      "move_speed": 220,
+      "intelligence": 2,
+      "has_driver": true,
+      "build_time": 8.0
+    },
+    "light_tank": {
+      "name": "Light Tank",
+      "max_hp": 200,
+      "damage": 25,
+      "move_speed": 130,
+      "intelligence": 2,
+      "has_driver": true,
+      "build_time": 14.0
+    },
+    "medium_tank": {
+      "name": "Medium Tank",
+      "max_hp": 350,
+      "damage": 40,
+      "move_speed": 100,
+      "intelligence": 3,
+      "has_driver": true,
+      "build_time": 18.0
+    },
+    "heavy_tank": {
+      "name": "Heavy Tank",
+      "max_hp": 500,
+      "damage": 65,
+      "move_speed": 75,
+      "intelligence": 3,
+      "has_driver": true,
+      "build_time": 25.0
+    }
+  },
+  "guns": {
+    "gatling": {
+      "name": "Gatling Gun",
+      "max_hp": 100,
+      "damage": 5,
+      "fire_rate": 0.08,
+      "range": 250,
+      "build_time": 10.0
+    },
+    "howitzer": {
+      "name": "Howitzer",
+      "max_hp": 120,
+      "damage": 80,
+      "fire_rate": 3.0,
+      "range": 500,
+      "splash_radius": 64,
+      "build_time": 15.0
+    }
+  }
+}
