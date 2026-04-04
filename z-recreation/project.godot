@@ -71,6 +71,46 @@ order={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"button_index":2,"pressed":false)]
 }
+group_0={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":48,"pressed":false)]
+}
+group_1={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":49,"pressed":false)]
+}
+group_2={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":50,"pressed":false)]
+}
+group_3={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":51,"pressed":false)]
+}
+group_4={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":52,"pressed":false)]
+}
+group_5={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":53,"pressed":false)]
+}
+group_6={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":54,"pressed":false)]
+}
+group_7={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":55,"pressed":false)]
+}
+group_8={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":56,"pressed":false)]
+}
+group_9={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":57,"pressed":false)]
+}
 
 [network]
 
