@@ -10,6 +10,8 @@ enum Team { NEUTRAL, RED, BLUE }
 @export var move_speed: float = 100.0
 @export var intelligence: int = 0 # 0-5 scale: lower = dumber
 @export var unit_type: String = "robot"
+@export var fire_rate: float = 1.0
+var last_fired: float = 0.0
 
 signal died(killer: Node2D)
 signal team_changed(new_team: Team)

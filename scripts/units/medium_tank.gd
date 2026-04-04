@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 func find_priority_target() -> Node2D:
 	# Medium tank prioritizes vehicles
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
-		return v.owner != owner and v.hp > 0
+		return v.unit.team != self.team and v.hp > 0
 	)
 
 	if vehicles.size() > 0:
@@ -47,7 +47,7 @@ func find_priority_target() -> Node2D:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.team != owner and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -69,7 +69,7 @@ func die(killer: Node2D) -> void:
 	if turret_scene:
 		var turret = turret_scene.instantiate()
 		turret.global_position = global_position
-		turret.velocity = Vector2(RANDF_RANGE(-300, 300), -400)
+		turret.velocity = Vector2(randf_range(-300, 300), -400)
 		get_parent().add_child(turret)
 
 	super.die(killer)

@@ -34,7 +34,7 @@ func take_damage(amount: float, attacker: Node2D) -> void:
 
 func kill_driver() -> void:
 	driver_alive = false
-	owner = Owner.NEUTRAL
+	team = Team.NEUTRAL
 	driver_killed.emit()
 	
 	# Eject driver sprite
@@ -42,7 +42,7 @@ func kill_driver() -> void:
 	if driver_scene:
 		var driver = driver_scene.instantiate()
 		driver.global_position = global_position + driver_hitbox_offset
-		driver.velocity = Vector2(RANDF_RANGE(-80, 80), -150)
+		driver.velocity = Vector2(randf_range(-80, 80), -150)
 		get_parent().add_child(driver)
 	
 	# Vehicle becomes instantly claimable by any player
@@ -59,10 +59,10 @@ func _on_driver_hit(body: Node2D) -> void:
 
 
 func can_be_captured() -> bool:
-	return has_driver and not driver_alive and owner == Owner.NEUTRAL
+	return has_driver and not driver_alive and team == Team.NEUTRAL
 
 
-func capture(new_owner: Owner) -> void:
+func capture(new_owner: Team) -> void:
 	if can_be_captured():
 		owner = new_owner
 		driver_alive = true

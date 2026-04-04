@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 
 func find_damaged_ally() -> Node2D:
 	var damaged_allies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner == owner and unit.hp < unit.max_hp and unit != self
+		return unit.team == owner and unit.hp < unit.max_hp and unit != self
 	)
 
 	if damaged_allies.size() == 0:

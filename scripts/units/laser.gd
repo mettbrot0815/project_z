@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 func find_priority_target() -> Node2D:
 	# High intelligence: prioritize strategic targets
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
-		return v.owner != owner and v.hp > 0
+		return v.unit.team != self.team and v.hp > 0
 	)
 
 	if vehicles.size() > 0:
@@ -43,7 +43,7 @@ func find_priority_target() -> Node2D:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.team != owner and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -59,7 +59,7 @@ func find_nearest_enemy() -> Node2D:
 func _avoid_threats() -> void:
 	# High intelligence laser units avoid danger
 	var threats = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and global_position.distance_to(unit.global_position) < 200
+		return unit.team != owner and unit.hp > 0 and global_position.distance_to(unit.global_position) < 200
 	)
 
 	if threats.size() > 0:

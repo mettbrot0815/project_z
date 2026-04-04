@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.team != owner and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -73,7 +73,7 @@ func _find_nearest_flag_for_transport() -> void:
 
 
 func can_load_unit(unit: Node2D) -> bool:
-	return passengers.size() < max_passengers and unit.owner == owner
+	return passengers.size() < max_passengers and unit.team == owner
 
 
 func load_unit(unit: Node2D) -> void:
@@ -85,7 +85,7 @@ func load_unit(unit: Node2D) -> void:
 
 func unload_units() -> void:
 	for passenger in passengers:
-		passenger.global_position = global_position + Vector2(RANDF_RANGE(-32, 32), RANDF_RANGE(-32, 32))
+		passenger.global_position = global_position + Vector2(randf_range(-32, 32), randf_range(-32, 32))
 		passenger.visible = true
 		passenger.set_process(true)
 
