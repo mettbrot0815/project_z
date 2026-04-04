@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.team != owner and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -54,7 +54,7 @@ func die(killer: Node2D) -> void:
 	if turret_scene:
 		var turret = turret_scene.instantiate()
 		turret.global_position = global_position
-		turret.velocity = Vector2(RANDF_RANGE(-200, 200), -300)
+		turret.velocity = Vector2(randf_range(-200, 200), -300)
 		get_parent().add_child(turret)
 
 	super.die(killer)

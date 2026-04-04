@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.owner != owner and unit.hp > 0 and unit != self
+		return unit.unit.team != self.team and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -40,17 +40,3 @@ func find_nearest_enemy() -> Node2D:
 	return enemies[0]
 
 
-# Tough units prioritize attacking vehicles when intelligence allows
-func _find_nearest_vehicle() -> Node2D:
-	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
-		return v.owner != owner and v.hp > 0
-	)
-
-	if vehicles.size() == 0:
-		return null
-
-	vehicles.sort_custom(func(a, b):
-		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
-	)
-
-	return vehicles[0]
