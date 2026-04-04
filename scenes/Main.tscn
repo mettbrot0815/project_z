@@ -1,117 +1,50 @@
-[gd_scene load_steps=16 format=3 uid="uid-main-scene"]
+[gd_scene load_steps=6 format=3 uid="uid://b7kxj87x2q34c"]
 
-[resource_type "SubResource" uid="sector-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[ext_resource type="Script" path="res://scripts/game/game_manager.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/game/camera_controller.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/game/selection_manager.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/campaign/level_loader.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/ui/sidebar.gd" id="5"]
 
-[sub_resource]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="Main" type="Node2D"]
+script = ExtResource("1")
 
-[resource_type "SubResource" uid="sector-2"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2")
+current = true
+zoom = Vector2(1, 1)
 
-[resource_type "SubResource" uid="unit-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = null
 
-[resource_type "SubResource" uid="factory-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 
-[resource_type "SubResource" uid="hud-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="SelectionManager" type="Node" parent="."]
+script = ExtResource("3")
 
-[resource_type "SubResource" uid="minimap-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="LevelLoader" type="Node" parent="."]
+script = ExtResource("4")
 
-[resource_type "SubResource" uid="ui-panel-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="UI" type="CanvasLayer" parent="."]
 
-[resource_type "SubResource" uid="unit-panel-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="Sidebar" type="Control" parent="UI"]
+script = ExtResource("5")
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[resource_type "SubResource" uid="particle-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="UnitRoster" type="GridContainer" parent="UI/Sidebar"]
+position = Vector2(20, 20)
+columns = 3
 
-[resource_type "SubResource" uid="camera-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="FactoryPanel" type="VBoxContainer" parent="UI/Sidebar"]
+position = Vector2(1000, 20)
+visible = false
 
-[resource_type "SubResource" uid="game-manager-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="Status" type="VBoxContainer" parent="UI/Sidebar"]
+position = Vector2(20, 600)
 
-[resource_type "SubResource" uid="sector-manager-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
+[node name="TerritoryCount" type="Label" parent="UI/Sidebar/Status"]
+text = "Territories: 0"
 
-[resource_type "SubResource" uid="input-handler-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
-
-[resource_type "SubResource" uid="unit-ai-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
-
-[resource_type "SubResource" uid="ai-controller-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
-
-[resource_type "SubResource" uid="game-ui-1"]
-sub_resource/id = "SUB_RESOURCE"
-sub_resource/sub_type = "PackedScene"
-sub_resource/packed_scene/resource = SubResource_PackedScene_new()
-
-[gd_scene load_steps=1 format=3]
-[ext_resource type="PackedScene" uid="game-manager-1" path="res://scenes/Main.tscn::GameManager"]
-[ext_resource type="PackedScene" uid="sector-manager-1" path="res://scenes/Main.tscn::SectorManager"]
-[ext_resource type="PackedScene" uid="input-handler-1" path="res://scenes/Main.tscn::InputHandler"]
-[ext_resource type="PackedScene" uid="unit-ai-1" path="res://scenes/Main.tscn::UnitAI"]
-[ext_resource type="PackedScene" uid="ai-controller-1" path="res://scenes/Main.tscn::AIController"]
-[ext_resource type="PackedScene" uid="hud-1" path="res://scenes/Main.tscn::HUD"]
-[ext_resource type="PackedScene" uid="minimap-1" path="res://scenes/Main.tscn::Minimap"]
-[ext_resource type="PackedScene" uid="ui-panel-1" path="res://scenes/Main.tscn::UIPanel"]
-[ext_resource type="PackedScene" uid="unit-panel-1" path="res://scenes/Main.tscn::UnitPanel"]
-[ext_resource type="PackedScene" uid="camera-1" path="res://scenes/Main.tscn::Camera2D"]
-[ext_resource type="PackedScene" uid="particle-1" path="res://scenes/Main.tscn::ParticleSystem2D"]
-[ext_resource type="PackedScene" uid="factory-1" path="res://scenes/Main.tscn::Factory"]
-[ext_resource type="PackedScene" uid="unit-1" path="res://scenes/Main.tscn::Unit"]
-
-[node name="GameManager" type="Node" instance=resource://game-manager-1]
-[node name="SectorManager" type="Node" instance=resource://sector-manager-1]
-[node name="InputHandler" type="Node" instance=resource://input-handler-1]
-[node name="UnitAI" type="Node" instance=resource://unit-ai-1]
-[node name="AIController" type="Node" instance=resource://ai-controller-1]
-[node name="GameUI" type="Node" instance=resource://game-ui-1]
-[node name="Level" type="Node" instance=SubResource_PackedScene_new()]
-[node name="Camera2D" type="Camera2D" instance=resource://camera-1]
-[node name="UIPanel" type="Control" instance=resource://ui-panel-1]
-[node name="Minimap" type="CanvasLayer" instance=resource://minimap-1]
-[node name="UnitPanel" type="Control" instance=resource://unit-panel-1]
-[node name="HUD" type="CanvasLayer" instance=resource://hud-1]
-[node name="ParticleSystem2D" type="ParticleSystem2D" instance=resource://particle-1]
-[node name="Factory" type="Node2D" instance=resource://factory-1]
-[node name="Unit" type="Node2D" instance=resource://unit-1]
+[node name="ProductionMultiplier" type="Label" parent="UI/Sidebar/Status"]
+text = "Speed: x1.00"
