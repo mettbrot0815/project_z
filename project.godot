@@ -7,6 +7,7 @@
 
 config/name="Z (1996) Recreation"
 config/description="Faithful recreation of the 1996 Bitmap Brothers real-time strategy game"
+config/features=PackedStringArray("4.6")
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://assets/sprites/icon.png"
 config/version="0.1.0"
