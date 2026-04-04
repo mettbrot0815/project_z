@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Psycho - rapid fire, machine gun, intelligence 1
 

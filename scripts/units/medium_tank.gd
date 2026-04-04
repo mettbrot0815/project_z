@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # Medium Tank - heavy armor, powerful weapon, intelligence 3
 

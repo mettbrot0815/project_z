@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Commander - highest intelligence, strategic AI, powerful
 

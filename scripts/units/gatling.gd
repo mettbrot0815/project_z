@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Gatling Gun - stationary, rapid fire, auto-tracking
 

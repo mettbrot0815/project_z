@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Grunt - lowest intelligence, fastest, weakest
 

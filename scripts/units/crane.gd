@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # Crane - repair vehicle, fixes damage, intelligence 3
 

@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # APC - troop transport, carries units, intelligence 2
 
