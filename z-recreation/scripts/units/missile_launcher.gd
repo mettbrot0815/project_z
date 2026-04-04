@@ -1,0 +1,92 @@
+extends vehicle_base
+
+# Mobile Missile Launcher - long range, high damage, slow reload
+
+func _ready() -> void:
+	super._ready()
+	max_hp = 100
+	hp = 100
+	damage = 100
+	move_speed = 80
+	intelligence = 3
+	unit_type = "missile_launcher"
+	fire_rate = 5.0
+	last_fired = 0.0
+	has_driver = true
+
+
+func _process(delta: float) -> void:
+	super._process(delta)
+
+	if not driver_alive:
+		return
+
+	last_fired += delta
+
+	if last_fired >= fire_rate:
+		var target = find_priority_target()
+		if target and global_position.distance_to(target.global_position) < 600:
+			CombatManager.fire_projectile(global_position, target.global_position, damage, self)
+			last_fired = 0.0
+
+
+func find_priority_target() -> Node2D:
+	# Missile launcher prioritizes buildings and groups
+	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
+		return b.owner != owner and b.hp > 0
+	)
+
+	if buildings.size() > 0:
+		buildings.sort_custom(func(a, b):
+			return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+		)
+		return buildings[0]
+
+	# Then large groups of enemies
+	var enemy_groups = find_enemy_groups()
+	if enemy_groups.size() > 0:
+		return enemy_groups[0]["center"]
+
+	return find_nearest_enemy()
+
+
+func find_enemy_groups() -> Array:
+	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+		return unit.owner != owner and unit.hp > 0
+	)
+
+	var groups = []
+	for enemy in enemies:
+		var nearby = enemies.filter(func(e):
+			return e != enemy and e.global_position.distance_to(enemy.global_position) < 100
+		)
+		if nearby.size() >= 3:  # Group of 4+ enemies
+			var center = Vector2.ZERO
+			for e in nearby:
+				center += e.global_position
+			center /= nearby.size()
+			groups.append({"center": center, "count": nearby.size()})
+
+	groups.sort_custom(func(a, b): return a["count"] > b["count"])
+	return groups
+
+
+func find_nearest_enemy() -> Node2D:
+	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+		return unit.owner != owner and unit.hp > 0 and unit != self
+	)
+
+	if enemies.size() == 0:
+		return null
+
+	enemies.sort_custom(func(a, b):
+		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
+
+	return enemies[0]
+
+
+func die(killer: Node2D) -> void:
+	# Missile launcher explodes with massive splash
+	CombatManager.apply_splash_damage(global_position, 200, damage * 1.5, killer)
+	super.die(killer)

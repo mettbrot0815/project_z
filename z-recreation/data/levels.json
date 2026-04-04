@@ -1,0 +1,39 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "Desert - Level 1",
+      "planet": "desert",
+      "territories": [
+        {"id": 0, "position": [512, 512], "owner": 0},
+        {"id": 1, "position": [768, 512], "owner": 0},
+        {"id": 2, "position": [1024, 512], "owner": 0},
+        {"id": 3, "position": [1280, 512], "owner": 0},
+        {"id": 4, "position": [1536, 512], "owner": 0},
+        {"id": 5, "position": [256, 512], "owner": 1},
+        {"id": 6, "position": [1792, 512], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 450], "territory_id": 5, "owner": 1},
+        {"type": "robot", "position": [1792, 450], "territory_id": 6, "owner": 2},
+        {"type": "robot", "position": [1024, 450], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "grunt", "position": [200, 600], "owner": 1},
+        {"type": "grunt", "position": [250, 600], "owner": 1},
+        {"type": "grunt", "position": [300, 600], "owner": 1},
+        {"type": "grunt", "position": [1800, 600], "owner": 2},
+        {"type": "grunt", "position": [1850, 600], "owner": 2},
+        {"type": "grunt", "position": [1750, 600], "owner": 2}
+      ],
+      "buildings": []
+    }
+  ],
+  "planets": {
+    "desert": {"color": "#d4a574", "bg": "#b8956e"},
+    "volcanic": {"color": "#7a3b2e", "bg": "#4a2020"},
+    "arctic": {"color": "#e8f4f8", "bg": "#cde4eb"},
+    "jungle": {"color": "#3d6b35", "bg": "#2a4d25"},
+    "city": {"color": "#555555", "bg": "#333333"}
+  }
+}
