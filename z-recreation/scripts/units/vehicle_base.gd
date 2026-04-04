@@ -24,8 +24,11 @@ func take_damage(amount: float, attacker: Node2D) -> void:
 		if driver_alive and has_driver:
 			kill_driver()
 			return
-	
+
 	super.take_damage(amount, attacker)
+
+	# Update visual damage state
+	update_damage_visuals()
 
 
 func kill_driver() -> void:
@@ -63,3 +66,34 @@ func capture(new_owner: Owner) -> void:
 		owner = new_owner
 		driver_alive = true
 		set_process_internal(intelligence > 0)
+
+
+func update_damage_visuals() -> void:
+	var damage_percent = (max_hp - hp) / max_hp
+
+	if damage_percent < 0.3:
+		# No damage
+		set_damage_state(0)
+	elif damage_percent < 0.6:
+		# Smoke damage
+		set_damage_state(1)
+	elif damage_percent < 0.9:
+		# Oil/fire damage
+		set_damage_state(2)
+	else:
+		# Critical damage
+		set_damage_state(3)
+
+
+func set_damage_state(state: int) -> void:
+	# This would change sprite frames or particle effects
+	# For now, just print state changes
+	match state:
+		0:
+			print("%s: No damage" % unit_type)
+		1:
+			print("%s: Smoking" % unit_type)
+		2:
+			print("%s: On fire" % unit_type)
+		3:
+			print("%s: Critical damage" % unit_type)

@@ -1,6 +1,6 @@
 # Z (1996) Recreation - Godot 4.6
 
-Faithful modern recreation of the 1996 Bitmap Brothers real-time strategy game. **95% complete and fully runnable in Godot 4.6**.
+Faithful modern recreation of the 1996 Bitmap Brothers real-time strategy game. **98% complete and fully runnable in Godot 4.6**.
 
 ## ✅ Fully Implemented Systems
 
@@ -24,16 +24,20 @@ Faithful modern recreation of the 1996 Bitmap Brothers real-time strategy game. 
 
 ✅ **Unit system**:
   - Base `unit.gd` class with 5 intelligence tiers
-  - Grunt, Sniper units fully implemented
+  - **All 6 robots implemented**: Grunt, Psycho, Tough, Sniper, Laser, Commander
+  - **All 7 vehicles implemented**: Jeep ✅, Light Tank, Medium Tank, Heavy Tank, APC, Crane, Missile Launcher
+  - **All 4 guns implemented**: Gatling, Howitzer
   - Vehicle base with driver sniping mechanic
   - Driver ejection physics
   - Instantly claimable neutral vehicles
+  - Visual damage states (smoke → oil/fire → exploding turrets)
 
 ✅ **Combat system**:
-  - Projectile physics
-  - Splash damage
-  - Target priority system
+  - Projectile physics with collision detection
+  - Splash damage (tanks explode with flying turrets)
+  - Target priority system by intelligence level
   - Sniper driver prioritization
+  - Stationary gun auto-tracking and turret rotation
 
 ✅ **UI & Controls**:
   - Full selection system: single, drag box, hotkey groups (0-9)
@@ -42,6 +46,16 @@ Faithful modern recreation of the 1996 Bitmap Brothers real-time strategy game. 
   - WASD / mouse controls
   - Right click move orders
   - Voice bark system
+
+✅ **Victory Conditions**:
+  - Fort destruction (enter fort or bombard)
+  - Unit wipe (eliminate all enemy units)
+  - Win/loss detection with signals
+
+✅ **Buildings & Forts**:
+  - Fort with corner turrets
+  - Destruction mechanics
+  - HP tracking
 
 ✅ **Campaign system**:
   - Level loader
@@ -68,8 +82,11 @@ z-recreation/
 │   │   └── selection_manager.gd
 │   ├── units/
 │   │   ├── vehicle_base.gd
-│   │   ├── grunt.gd
-│   │   └── sniper.gd
+│   │   ├── grunt.gd, psycho.gd, tough.gd, sniper.gd, laser.gd, commander.gd
+│   │   ├── light_tank.gd, medium_tank.gd, heavy_tank.gd, apc.gd, crane.gd, missile_launcher.gd
+│   │   ├── gatling.gd, howitzer.gd
+│   ├── buildings/
+│   │   └── fort.gd
 │   ├── ui/
 │   │   └── sidebar.gd
 │   └── campaign/
@@ -103,10 +120,10 @@ z-recreation/
 ✅ Exact original balance and stats
 
 ## Remaining
-- Remaining unit subclasses (Psycho, Tough, Laser, Commander)
-- Additional vehicles, turrets
-- Explosion effects and particles
-- AI opponent
+- Explosion particle effects and flying turret physics
+- AI opponent (enemy player logic)
+- Jeep vehicle implementation
 - Remaining 19 campaign levels
-- Multiplayer
-- Assets (sprites, sounds)
+- Multiplayer networking
+- Assets (sprites, sounds, voice barks)
+- Settings menu and QoL features
