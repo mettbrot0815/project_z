@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 func find_priority_target() -> Node2D:
 	# First priority: vehicle drivers
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
-		return v.unit.team != self.team and v.hp > 0 and v.driver_alive
+		return v.team != self.team and v.hp > 0 and v.driver_alive
 	)
 	
 	if vehicles.size() > 0:

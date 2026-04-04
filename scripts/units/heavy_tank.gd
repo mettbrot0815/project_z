@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 func find_priority_target() -> Node2D:
 	# Heavy tank prioritizes buildings and fortified positions
 	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
-		return b.unit.team != self.team and b.hp > 0
+		return b.team != self.team and b.hp > 0
 	)
 
 	if buildings.size() > 0:
@@ -44,7 +44,7 @@ func find_priority_target() -> Node2D:
 
 	# Then vehicles
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
-		return v.unit.team != self.team and v.hp > 0
+		return v.team != self.team and v.hp > 0
 	)
 
 	if vehicles.size() > 0:

@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 func find_priority_target() -> Node2D:
 	# Commander prioritizes high-value targets
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
-		return v.unit.team != self.team and v.hp > 0
+		return v.team != self.team and v.hp > 0
 	)
 
 	if vehicles.size() > 0:

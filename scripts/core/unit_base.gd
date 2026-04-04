@@ -16,7 +16,8 @@ var last_fired: float = 0.0
 signal died(killer: Node2D)
 signal team_changed(new_team: Team)
 
-var hp: float = max_hp
+# Use int for owner to match TerritoryManager.Owner enum
+var owner: int = 0
 var team: Team = Team.NEUTRAL:
 	set(value):
 		team = value
