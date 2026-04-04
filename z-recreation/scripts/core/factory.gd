@@ -1,0 +1,74 @@
+extends Node2D
+
+# Factory production system - exact original Z behavior
+# Critical: Timer CONTINUES when factory is captured mid-build (no reset)
+
+@export var territory_id: int
+@export var base_production_time: float = 10.0
+@export var factory_type: String = "robot"
+
+signal production_started(unit_type: String)
+signal production_completed(unit: Node2D)
+
+var current_build: String = ""
+var build_progress: float = 0.0
+var is_producing: bool = false
+var owner: int = 0
+
+var production_queue: Array[String] = []
+
+
+func _ready() -> void:
+	TerritoryManager.production_multiplier_updated.connect(_on_multiplier_updated)
+
+
+func _physics_process(delta: float) -> void:
+	if is_producing and owner != TerritoryManager.Owner.NEUTRAL:
+		var speed = TerritoryManager.get_production_speed_for_owner(owner)
+		build_progress += delta * speed
+		
+		if build_progress >= base_production_time:
+			complete_production()
+
+
+func start_production(unit_type: String) -> void:
+	if is_producing:
+		production_queue.append(unit_type)
+		return
+	
+	current_build = unit_type
+	build_progress = 0.0
+	is_producing = true
+	production_started.emit(unit_type)
+
+
+func complete_production() -> void:
+	is_producing = false
+	
+	# Spawn unit
+	var unit_scene = load("res://scenes/units/%s.tscn" % current_build)
+	if unit_scene:
+		var unit = unit_scene.instantiate()
+		unit.owner = owner
+		unit.global_position = global_position + Vector2(RANDF_RANGE(-32, 32), 0)
+		get_parent().add_child(unit)
+		production_completed.emit(unit)
+	
+	current_build = ""
+	build_progress = 0.0
+	
+	# Process next in queue
+	if production_queue.size() > 0:
+		start_production(production_queue.pop_front())
+
+
+func get_build_percentage() -> float:
+	if not is_producing:
+		return 0.0
+	return clamp(build_progress / base_production_time, 0.0, 1.0)
+
+
+func _on_multiplier_updated(_multiplier: float) -> void:
+	# Speed scales dynamically while building is in progress
+	# This is the original Z behavior - timer speeds up when more territories are captured
+	pass
