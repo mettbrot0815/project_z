@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # Heavy Tank - maximum armor and damage, slow, intelligence 3
 

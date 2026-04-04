@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Sniper - high damage, long range, prioritizes vehicle drivers
 

@@ -1,4 +1,5 @@
-extends unit_base
+class_name VehicleBase
+extends UnitBase
 
 # Base class for all vehicles including driver sniping mechanic
 # Original Z behavior: Driver can be shot out, vehicle becomes neutral

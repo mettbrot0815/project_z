@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # Light Tank - balanced vehicle, intelligence 2
 

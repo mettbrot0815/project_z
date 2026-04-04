@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Laser - powerful laser weapon, high intelligence, accurate
 

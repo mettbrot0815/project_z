@@ -1,3 +1,4 @@
+class_name UnitBase
 extends CharacterBody2D
 
 # Base unit class for all robots, vehicles, and guns

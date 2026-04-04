@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # Jeep - fast scout vehicle, intelligence 2
 

@@ -1,4 +1,4 @@
-extends vehicle_base
+extends VehicleBase
 
 # Mobile Missile Launcher - long range, high damage, slow reload
 

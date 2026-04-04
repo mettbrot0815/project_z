@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Tough - high HP, slow, powerful shots, intelligence 2
 

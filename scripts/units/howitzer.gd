@@ -1,4 +1,4 @@
-extends unit_base
+extends UnitBase
 
 # Howitzer - stationary artillery, high damage, splash, slow reload
 
