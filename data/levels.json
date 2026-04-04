@@ -27,6 +27,569 @@
         {"type": "grunt", "position": [1750, 600], "owner": 2}
       ],
       "buildings": []
+    },
+    {
+      "id": 2,
+      "name": "Desert - Level 2",
+      "planet": "desert",
+      "territories": [
+        {"id": 0, "position": [256, 256], "owner": 0},
+        {"id": 1, "position": [512, 256], "owner": 0},
+        {"id": 2, "position": [768, 256], "owner": 0},
+        {"id": 3, "position": [1024, 256], "owner": 0},
+        {"id": 4, "position": [1280, 256], "owner": 0},
+        {"id": 5, "position": [1536, 256], "owner": 0},
+        {"id": 6, "position": [128, 512], "owner": 1},
+        {"id": 7, "position": [1664, 512], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [128, 450], "territory_id": 6, "owner": 1},
+        {"type": "robot", "position": [1664, 450], "territory_id": 7, "owner": 2},
+        {"type": "vehicle", "position": [512, 450], "territory_id": 1, "owner": 0}
+      ],
+      "units": [
+        {"type": "grunt", "position": [100, 600], "owner": 1},
+        {"type": "grunt", "position": [150, 600], "owner": 1},
+        {"type": "psycho", "position": [200, 600], "owner": 1},
+        {"type": "grunt", "position": [1700, 600], "owner": 2},
+        {"type": "grunt", "position": [1750, 600], "owner": 2},
+        {"type": "tough", "position": [1800, 600], "owner": 2},
+        {"type": "jeep", "position": [500, 700], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 3,
+      "name": "Volcanic - Level 3",
+      "planet": "volcanic",
+      "territories": [
+        {"id": 0, "position": [320, 320], "owner": 0},
+        {"id": 1, "position": [640, 320], "owner": 0},
+        {"id": 2, "position": [960, 320], "owner": 0},
+        {"id": 3, "position": [1280, 320], "owner": 0},
+        {"id": 4, "position": [1600, 320], "owner": 0},
+        {"id": 5, "position": [192, 640], "owner": 1},
+        {"id": 6, "position": [1728, 640], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [192, 580], "territory_id": 5, "owner": 1},
+        {"type": "vehicle", "position": [1728, 580], "territory_id": 6, "owner": 2},
+        {"type": "robot", "position": [960, 580], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "grunt", "position": [160, 720], "owner": 1},
+        {"type": "psycho", "position": [210, 720], "owner": 1},
+        {"type": "grunt", "position": [1760, 720], "owner": 2},
+        {"type": "tough", "position": [1810, 720], "owner": 2},
+        {"type": "light_tank", "position": [1810, 780], "owner": 2},
+        {"type": "grunt", "position": [930, 720], "owner": 0},
+        {"type": "jeep", "position": [980, 720], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 4,
+      "name": "Arctic - Level 4",
+      "planet": "arctic",
+      "territories": [
+        {"id": 0, "position": [384, 384], "owner": 0},
+        {"id": 1, "position": [768, 384], "owner": 0},
+        {"id": 2, "position": [1152, 384], "owner": 0},
+        {"id": 3, "position": [1536, 384], "owner": 0},
+        {"id": 4, "position": [256, 768], "owner": 1},
+        {"id": 5, "position": [1664, 768], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 710], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1664, 710], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1152, 710], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "grunt", "position": [220, 850], "owner": 1},
+        {"type": "psycho", "position": [270, 850], "owner": 1},
+        {"type": "sniper", "position": [320, 850], "owner": 1},
+        {"type": "grunt", "position": [1720, 850], "owner": 2},
+        {"type": "tough", "position": [1770, 850], "owner": 2},
+        {"type": "medium_tank", "position": [1820, 850], "owner": 2},
+        {"type": "grunt", "position": [1120, 850], "owner": 0},
+        {"type": "jeep", "position": [1170, 850], "owner": 0},
+        {"type": "light_tank", "position": [1220, 850], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 5,
+      "name": "Jungle - Level 5",
+      "planet": "jungle",
+      "territories": [
+        {"id": 0, "position": [448, 448], "owner": 0},
+        {"id": 1, "position": [896, 448], "owner": 0},
+        {"id": 2, "position": [1344, 448], "owner": 0},
+        {"id": 3, "position": [320, 896], "owner": 1},
+        {"id": 4, "position": [1600, 896], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [320, 840], "territory_id": 3, "owner": 1},
+        {"type": "vehicle", "position": [1600, 840], "territory_id": 4, "owner": 2},
+        {"type": "robot", "position": [1344, 840], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "psycho", "position": [280, 980], "owner": 1},
+        {"type": "sniper", "position": [330, 980], "owner": 1},
+        {"type": "laser", "position": [380, 980], "owner": 1},
+        {"type": "grunt", "position": [1660, 980], "owner": 2},
+        {"type": "tough", "position": [1710, 980], "owner": 2},
+        {"type": "heavy_tank", "position": [1760, 980], "owner": 2},
+        {"type": "grunt", "position": [1310, 980], "owner": 0},
+        {"type": "jeep", "position": [1360, 980], "owner": 0},
+        {"type": "medium_tank", "position": [1410, 980], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 6,
+      "name": "City - Level 6",
+      "planet": "city",
+      "territories": [
+        {"id": 0, "position": [512, 512], "owner": 0},
+        {"id": 1, "position": [768, 512], "owner": 0},
+        {"id": 2, "position": [1024, 512], "owner": 0},
+        {"id": 3, "position": [1280, 512], "owner": 0},
+        {"id": 4, "position": [256, 512], "owner": 1},
+        {"id": 5, "position": [1792, 512], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 450], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1792, 450], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1024, 450], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [220, 600], "owner": 1},
+        {"type": "commander", "position": [270, 600], "owner": 1},
+        {"type": "grunt", "position": [1850, 600], "owner": 2},
+        {"type": "psycho", "position": [1900, 600], "owner": 2},
+        {"type": "sniper", "position": [1950, 600], "owner": 2},
+        {"type": "heavy_tank", "position": [1950, 650], "owner": 2},
+        {"type": "grunt", "position": [990, 600], "owner": 0},
+        {"type": "tough", "position": [1040, 600], "owner": 0},
+        {"type": "medium_tank", "position": [1090, 600], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 7,
+      "name": "Desert - Level 7",
+      "planet": "desert",
+      "territories": [
+        {"id": 0, "position": [384, 384], "owner": 0},
+        {"id": 1, "position": [768, 384], "owner": 0},
+        {"id": 2, "position": [1152, 384], "owner": 0},
+        {"id": 3, "position": [1536, 384], "owner": 0},
+        {"id": 4, "position": [256, 768], "owner": 1},
+        {"id": 5, "position": [1664, 768], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 710], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1664, 710], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1152, 710], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "commander", "position": [220, 850], "owner": 1},
+        {"type": "laser", "position": [270, 850], "owner": 1},
+        {"type": "grunt", "position": [1720, 850], "owner": 2},
+        {"type": "tough", "position": [1770, 850], "owner": 2},
+        {"type": "sniper", "position": [1820, 850], "owner": 2},
+        {"type": "commander", "position": [1870, 850], "owner": 2},
+        {"type": "psycho", "position": [1120, 850], "owner": 0},
+        {"type": "sniper", "position": [1170, 850], "owner": 0},
+        {"type": "heavy_tank", "position": [1220, 850], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 8,
+      "name": "Volcanic - Level 8",
+      "planet": "volcanic",
+      "territories": [
+        {"id": 0, "position": [448, 448], "owner": 0},
+        {"id": 1, "position": [896, 448], "owner": 0},
+        {"id": 2, "position": [1344, 448], "owner": 0},
+        {"id": 3, "position": [320, 896], "owner": 1},
+        {"id": 4, "position": [1600, 896], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [320, 840], "territory_id": 3, "owner": 1},
+        {"type": "vehicle", "position": [1600, 840], "territory_id": 4, "owner": 2},
+        {"type": "robot", "position": [1344, 840], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [280, 980], "owner": 1},
+        {"type": "commander", "position": [330, 980], "owner": 1},
+        {"type": "grunt", "position": [1660, 980], "owner": 2},
+        {"type": "psycho", "position": [1710, 980], "owner": 2},
+        {"type": "tough", "position": [1760, 980], "owner": 2},
+        {"type": "laser", "position": [1810, 980], "owner": 2},
+        {"type": "sniper", "position": [1310, 980], "owner": 0},
+        {"type": "commander", "position": [1360, 980], "owner": 0},
+        {"type": "heavy_tank", "position": [1410, 980], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 9,
+      "name": "Arctic - Level 9",
+      "planet": "arctic",
+      "territories": [
+        {"id": 0, "position": [512, 512], "owner": 0},
+        {"id": 1, "position": [768, 512], "owner": 0},
+        {"id": 2, "position": [1024, 512], "owner": 0},
+        {"id": 3, "position": [1280, 512], "owner": 0},
+        {"id": 4, "position": [256, 512], "owner": 1},
+        {"id": 5, "position": [1792, 512], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 450], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1792, 450], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1024, 450], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "commander", "position": [220, 600], "owner": 1},
+        {"type": "laser", "position": [270, 600], "owner": 1},
+        {"type": "grunt", "position": [1850, 600], "owner": 2},
+        {"type": "psycho", "position": [1900, 600], "owner": 2},
+        {"type": "tough", "position": [1950, 600], "owner": 2},
+        {"type": "sniper", "position": [2000, 600], "owner": 2},
+        {"type": "laser", "position": [990, 600], "owner": 0},
+        {"type": "commander", "position": [1040, 600], "owner": 0},
+        {"type": "heavy_tank", "position": [1090, 600], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 10,
+      "name": "Jungle - Level 10",
+      "planet": "jungle",
+      "territories": [
+        {"id": 0, "position": [384, 384], "owner": 0},
+        {"id": 1, "position": [768, 384], "owner": 0},
+        {"id": 2, "position": [1152, 384], "owner": 0},
+        {"id": 3, "position": [1536, 384], "owner": 0},
+        {"id": 4, "position": [256, 768], "owner": 1},
+        {"id": 5, "position": [1664, 768], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 710], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1664, 710], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1152, 710], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [220, 850], "owner": 1},
+        {"type": "commander", "position": [270, 850], "owner": 1},
+        {"type": "grunt", "position": [1720, 850], "owner": 2},
+        {"type": "tough", "position": [1770, 850], "owner": 2},
+        {"type": "sniper", "position": [1820, 850], "owner": 2},
+        {"type": "laser", "position": [1870, 850], "owner": 2},
+        {"type": "commander", "position": [1120, 850], "owner": 0},
+        {"type": "laser", "position": [1170, 850], "owner": 0},
+        {"type": "heavy_tank", "position": [1220, 850], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 11,
+      "name": "City - Level 11",
+      "planet": "city",
+      "territories": [
+        {"id": 0, "position": [448, 448], "owner": 0},
+        {"id": 1, "position": [896, 448], "owner": 0},
+        {"id": 2, "position": [1344, 448], "owner": 0},
+        {"id": 3, "position": [320, 896], "owner": 1},
+        {"id": 4, "position": [1600, 896], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [320, 840], "territory_id": 3, "owner": 1},
+        {"type": "vehicle", "position": [1600, 840], "territory_id": 4, "owner": 2},
+        {"type": "robot", "position": [1344, 840], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "commander", "position": [280, 980], "owner": 1},
+        {"type": "laser", "position": [330, 980], "owner": 1},
+        {"type": "grunt", "position": [1660, 980], "owner": 2},
+        {"type": "psycho", "position": [1710, 980], "owner": 2},
+        {"type": "tough", "position": [1760, 980], "owner": 2},
+        {"type": "sniper", "position": [1810, 980], "owner": 2},
+        {"type": "laser", "position": [1310, 980], "owner": 0},
+        {"type": "commander", "position": [1360, 980], "owner": 0},
+        {"type": "heavy_tank", "position": [1410, 980], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 12,
+      "name": "Desert - Level 12",
+      "planet": "desert",
+      "territories": [
+        {"id": 0, "position": [512, 512], "owner": 0},
+        {"id": 1, "position": [768, 512], "owner": 0},
+        {"id": 2, "position": [1024, 512], "owner": 0},
+        {"id": 3, "position": [1280, 512], "owner": 0},
+        {"id": 4, "position": [256, 512], "owner": 1},
+        {"id": 5, "position": [1792, 512], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 450], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1792, 450], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1024, 450], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [220, 600], "owner": 1},
+        {"type": "commander", "position": [270, 600], "owner": 1},
+        {"type": "grunt", "position": [1850, 600], "owner": 2},
+        {"type": "tough", "position": [1900, 600], "owner": 2},
+        {"type": "sniper", "position": [1950, 600], "owner": 2},
+        {"type": "laser", "position": [2000, 600], "owner": 2},
+        {"type": "commander", "position": [990, 600], "owner": 0},
+        {"type": "laser", "position": [1040, 600], "owner": 0},
+        {"type": "heavy_tank", "position": [1090, 600], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 13,
+      "name": "Volcanic - Level 13",
+      "planet": "volcanic",
+      "territories": [
+        {"id": 0, "position": [384, 384], "owner": 0},
+        {"id": 1, "position": [768, 384], "owner": 0},
+        {"id": 2, "position": [1152, 384], "owner": 0},
+        {"id": 3, "position": [1536, 384], "owner": 0},
+        {"id": 4, "position": [256, 768], "owner": 1},
+        {"id": 5, "position": [1664, 768], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 710], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1664, 710], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1152, 710], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "commander", "position": [220, 850], "owner": 1},
+        {"type": "laser", "position": [270, 850], "owner": 1},
+        {"type": "grunt", "position": [1720, 850], "owner": 2},
+        {"type": "psycho", "position": [1770, 850], "owner": 2},
+        {"type": "tough", "position": [1820, 850], "owner": 2},
+        {"type": "sniper", "position": [1870, 850], "owner": 2},
+        {"type": "laser", "position": [1120, 850], "owner": 0},
+        {"type": "commander", "position": [1170, 850], "owner": 0},
+        {"type": "heavy_tank", "position": [1220, 850], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 14,
+      "name": "Arctic - Level 14",
+      "planet": "arctic",
+      "territories": [
+        {"id": 0, "position": [448, 448], "owner": 0},
+        {"id": 1, "position": [896, 448], "owner": 0},
+        {"id": 2, "position": [1344, 448], "owner": 0},
+        {"id": 3, "position": [320, 896], "owner": 1},
+        {"id": 4, "position": [1600, 896], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [320, 840], "territory_id": 3, "owner": 1},
+        {"type": "vehicle", "position": [1600, 840], "territory_id": 4, "owner": 2},
+        {"type": "robot", "position": [1344, 840], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [280, 980], "owner": 1},
+        {"type": "commander", "position": [330, 980], "owner": 1},
+        {"type": "grunt", "position": [1660, 980], "owner": 2},
+        {"type": "tough", "position": [1710, 980], "owner": 2},
+        {"type": "sniper", "position": [1760, 980], "owner": 2},
+        {"type": "laser", "position": [1810, 980], "owner": 2},
+        {"type": "commander", "position": [1310, 980], "owner": 0},
+        {"type": "laser", "position": [1360, 980], "owner": 0},
+        {"type": "heavy_tank", "position": [1410, 980], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 15,
+      "name": "Jungle - Level 15",
+      "planet": "jungle",
+      "territories": [
+        {"id": 0, "position": [512, 512], "owner": 0},
+        {"id": 1, "position": [768, 512], "owner": 0},
+        {"id": 2, "position": [1024, 512], "owner": 0},
+        {"id": 3, "position": [1280, 512], "owner": 0},
+        {"id": 4, "position": [256, 512], "owner": 1},
+        {"id": 5, "position": [1792, 512], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 450], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1792, 450], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1024, 450], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "commander", "position": [220, 600], "owner": 1},
+        {"type": "laser", "position": [270, 600], "owner": 1},
+        {"type": "grunt", "position": [1850, 600], "owner": 2},
+        {"type": "psycho", "position": [1900, 600], "owner": 2},
+        {"type": "tough", "position": [1950, 600], "owner": 2},
+        {"type": "sniper", "position": [2000, 600], "owner": 2},
+        {"type": "laser", "position": [990, 600], "owner": 0},
+        {"type": "commander", "position": [1040, 600], "owner": 0},
+        {"type": "heavy_tank", "position": [1090, 600], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 16,
+      "name": "City - Level 16",
+      "planet": "city",
+      "territories": [
+        {"id": 0, "position": [384, 384], "owner": 0},
+        {"id": 1, "position": [768, 384], "owner": 0},
+        {"id": 2, "position": [1152, 384], "owner": 0},
+        {"id": 3, "position": [1536, 384], "owner": 0},
+        {"id": 4, "position": [256, 768], "owner": 1},
+        {"id": 5, "position": [1664, 768], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 710], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1664, 710], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1152, 710], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [220, 850], "owner": 1},
+        {"type": "commander", "position": [270, 850], "owner": 1},
+        {"type": "grunt", "position": [1720, 850], "owner": 2},
+        {"type": "tough", "position": [1770, 850], "owner": 2},
+        {"type": "sniper", "position": [1820, 850], "owner": 2},
+        {"type": "laser", "position": [1870, 850], "owner": 2},
+        {"type": "commander", "position": [1120, 850], "owner": 0},
+        {"type": "laser", "position": [1170, 850], "owner": 0},
+        {"type": "heavy_tank", "position": [1220, 850], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 17,
+      "name": "Desert - Level 17",
+      "planet": "desert",
+      "territories": [
+        {"id": 0, "position": [448, 448], "owner": 0},
+        {"id": 1, "position": [896, 448], "owner": 0},
+        {"id": 2, "position": [1344, 448], "owner": 0},
+        {"id": 3, "position": [320, 896], "owner": 1},
+        {"id": 4, "position": [1600, 896], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [320, 840], "territory_id": 3, "owner": 1},
+        {"type": "vehicle", "position": [1600, 840], "territory_id": 4, "owner": 2},
+        {"type": "robot", "position": [1344, 840], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "commander", "position": [280, 980], "owner": 1},
+        {"type": "laser", "position": [330, 980], "owner": 1},
+        {"type": "grunt", "position": [1660, 980], "owner": 2},
+        {"type": "psycho", "position": [1710, 980], "owner": 2},
+        {"type": "tough", "position": [1760, 980], "owner": 2},
+        {"type": "sniper", "position": [1810, 980], "owner": 2},
+        {"type": "laser", "position": [1310, 980], "owner": 0},
+        {"type": "commander", "position": [1360, 980], "owner": 0},
+        {"type": "heavy_tank", "position": [1410, 980], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 18,
+      "name": "Volcanic - Level 18",
+      "planet": "volcanic",
+      "territories": [
+        {"id": 0, "position": [512, 512], "owner": 0},
+        {"id": 1, "position": [768, 512], "owner": 0},
+        {"id": 2, "position": [1024, 512], "owner": 0},
+        {"id": 3, "position": [1280, 512], "owner": 0},
+        {"id": 4, "position": [256, 512], "owner": 1},
+        {"id": 5, "position": [1792, 512], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 450], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1792, 450], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1024, 450], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [220, 600], "owner": 1},
+        {"type": "commander", "position": [270, 600], "owner": 1},
+        {"type": "grunt", "position": [1850, 600], "owner": 2},
+        {"type": "tough", "position": [1900, 600], "owner": 2},
+        {"type": "sniper", "position": [1950, 600], "owner": 2},
+        {"type": "laser", "position": [2000, 600], "owner": 2},
+        {"type": "commander", "position": [990, 600], "owner": 0},
+        {"type": "laser", "position": [1040, 600], "owner": 0},
+        {"type": "heavy_tank", "position": [1090, 600], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 19,
+      "name": "Arctic - Level 19",
+      "planet": "arctic",
+      "territories": [
+        {"id": 0, "position": [384, 384], "owner": 0},
+        {"id": 1, "position": [768, 384], "owner": 0},
+        {"id": 2, "position": [1152, 384], "owner": 0},
+        {"id": 3, "position": [1536, 384], "owner": 0},
+        {"id": 4, "position": [256, 768], "owner": 1},
+        {"id": 5, "position": [1664, 768], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [256, 710], "territory_id": 4, "owner": 1},
+        {"type": "vehicle", "position": [1664, 710], "territory_id": 5, "owner": 2},
+        {"type": "robot", "position": [1152, 710], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "commander", "position": [220, 850], "owner": 1},
+        {"type": "laser", "position": [270, 850], "owner": 1},
+        {"type": "grunt", "position": [1720, 850], "owner": 2},
+        {"type": "psycho", "position": [1770, 850], "owner": 2},
+        {"type": "tough", "position": [1820, 850], "owner": 2},
+        {"type": "sniper", "position": [1870, 850], "owner": 2},
+        {"type": "laser", "position": [1120, 850], "owner": 0},
+        {"type": "commander", "position": [1170, 850], "owner": 0},
+        {"type": "heavy_tank", "position": [1220, 850], "owner": 0}
+      ],
+      "buildings": []
+    },
+    {
+      "id": 20,
+      "name": "Jungle - Level 20",
+      "planet": "jungle",
+      "territories": [
+        {"id": 0, "position": [448, 448], "owner": 0},
+        {"id": 1, "position": [896, 448], "owner": 0},
+        {"id": 2, "position": [1344, 448], "owner": 0},
+        {"id": 3, "position": [320, 896], "owner": 1},
+        {"id": 4, "position": [1600, 896], "owner": 2}
+      ],
+      "factories": [
+        {"type": "robot", "position": [320, 840], "territory_id": 3, "owner": 1},
+        {"type": "vehicle", "position": [1600, 840], "territory_id": 4, "owner": 2},
+        {"type": "robot", "position": [1344, 840], "territory_id": 2, "owner": 0}
+      ],
+      "units": [
+        {"type": "laser", "position": [280, 980], "owner": 1},
+        {"type": "commander", "position": [330, 980], "owner": 1},
+        {"type": "grunt", "position": [1660, 980], "owner": 2},
+        {"type": "tough", "position": [1710, 980], "owner": 2},
+        {"type": "sniper", "position": [1760, 980], "owner": 2},
+        {"type": "laser", "position": [1810, 980], "owner": 2},
+        {"type": "commander", "position": [1310, 980], "owner": 0},
+        {"type": "laser", "position": [1360, 980], "owner": 0},
+        {"type": "heavy_tank", "position": [1410, 980], "owner": 0}
+      ],
+      "buildings": []
     }
   ],
   "planets": {

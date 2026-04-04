@@ -4,6 +4,7 @@ extends Node
 
 var current_level: int = 0
 var levels_data: Dictionary = {}
+const MAX_LEVEL: int = 20
 
 
 func _ready() -> void:
@@ -16,6 +17,8 @@ func _ready() -> void:
 func load_level(level_id: int) -> void:
 	current_level = level_id
 	var level_data = levels_data["levels"][level_id]
+	
+	show_cutscene(level_id)
 	
 	# Load terrain
 	var tile_map = $"/root/Game/TileMap"
@@ -37,6 +40,11 @@ func load_level(level_id: int) -> void:
 		factory_node.global_position = Vector2(factory["position"][0], factory["position"][1])
 		factory_node.territory_id = factory["territory_id"]
 		factory_node.owner = factory["owner"]
+		
+		# AI production cheat in later levels
+		if factory["owner"] == 2 and level_id > 10:
+			factory_node.base_production_time *= 0.8  # 20% faster for CPU
+		
 		get_parent().add_child(factory_node)
 	
 	# Place starting units
@@ -46,3 +54,33 @@ func load_level(level_id: int) -> void:
 		unit_node.global_position = Vector2(unit["position"][0], unit["position"][1])
 		unit_node.owner = unit["owner"]
 		get_parent().add_child(unit_node)
+	
+	# Set planet theme
+	set_planet_theme(level_data["planet"])
+
+
+func set_planet_theme(planet: String) -> void:
+	var planet_data = levels_data["planets"][planet]
+	# For now, set the canvas modulate to bg color
+	get_viewport().get_camera_2d().canvas_modulate = Color(planet_data["bg"])
+	# Or set a background node if exists
+
+
+func show_cutscene(level_id: int) -> void:
+	var cutscenes = {
+		1: "Commander Zod: 'Welcome to the battlefield, soldier! Remember, no resource gathering - just pure tactical mayhem!'",
+		5: "Brad: 'Hey Allan, pass the rocket fuel!' Allan: 'Not now Brad, we're in combat!' Brad: 'But it's delicious!'",
+		10: "Commander Zod: 'Impressive victory! But beware, the AI is getting smarter... or is it?'",
+		15: "Brad: 'Allan, this rocket fuel is making me see double!' Allan: 'That's because you're drinking it wrong!'",
+		20: "Commander Zod: 'Congratulations! You've mastered the art of Z. Now go celebrate with some rocket fuel!' Brad & Allan: 'Yay!'"
+	}
+	
+	if cutscenes.has(level_id):
+		print("CUTSCENE: " + cutscenes[level_id])
+
+
+func advance_level() -> void:
+	if current_level < MAX_LEVEL:
+		load_level(current_level + 1)
+	else:
+		print("Campaign Complete!")

@@ -91,19 +91,73 @@ func _process(_delta: float) -> void:
 
 
 func _find_nearest_flag() -> void:
-	pass
+	var nearest_flag: Node2D = null
+	var nearest_distance: float = INF
+	
+	for territory_id in TerritoryManager.territories:
+		var territory = TerritoryManager.territories[territory_id]
+		if territory.owner == owner:
+			continue
+		
+		var flag = territory.flag
+		var distance = global_position.distance_to(flag.global_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest_flag = flag
+	
+	if nearest_flag:
+		move_to(nearest_flag.global_position)
 
 
 func _find_nearest_enemy() -> void:
-	pass
+	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+		return unit.owner != owner and unit.hp > 0 and unit != self
+	)
+	
+	if enemies.size() == 0:
+		return
+	
+	enemies.sort_custom(func(a, b):
+		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
+	
+	var nearest_enemy = enemies[0]
+	if nearest_enemy:
+		move_to(nearest_enemy.global_position)
 
 
 func _find_nearest_vehicle() -> void:
-	pass
+	var vehicles = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+		return unit.owner != owner and unit.hp > 0 and unit != self and unit.unit_type in ["jeep", "light_tank", "medium_tank", "heavy_tank", "apc", "crane", "missile_launcher"]
+	)
+	
+	if vehicles.size() == 0:
+		return
+	
+	vehicles.sort_custom(func(a, b):
+		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
+	
+	var nearest_vehicle = vehicles[0]
+	if nearest_vehicle:
+		move_to(nearest_vehicle.global_position)
 
 
 func _find_nearest_driver() -> void:
-	pass
+	var vehicles_with_drivers = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+		return unit.owner != owner and unit.hp > 0 and unit != self and unit.unit_type in ["jeep", "light_tank", "medium_tank", "heavy_tank", "apc", "crane", "missile_launcher"] and "driver_alive" in unit and unit.driver_alive
+	)
+	
+	if vehicles_with_drivers.size() == 0:
+		return
+	
+	vehicles_with_drivers.sort_custom(func(a, b):
+		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
+	
+	var nearest_vehicle = vehicles_with_drivers[0]
+	if nearest_vehicle:
+		move_to(nearest_vehicle.global_position)
 
 
 func _avoid_threats() -> void:

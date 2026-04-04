@@ -21,6 +21,10 @@ func _process(delta: float) -> void:
 	if not driver_alive:
 		return
 
+	# Missile launcher AI: Move toward high-value targets
+	if intelligence > 0:
+		_find_high_value_target()
+
 	last_fired += delta
 
 	if last_fired >= fire_rate:
@@ -84,6 +88,31 @@ func find_nearest_enemy() -> Node2D:
 	)
 
 	return enemies[0]
+
+
+func _find_high_value_target() -> void:
+	# Prioritize buildings
+	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
+		return b.owner != owner and b.hp > 0
+	)
+
+	if buildings.size() > 0:
+		buildings.sort_custom(func(a, b):
+			return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+		)
+		move_to(buildings[0].global_position)
+		return
+
+	# Then enemy groups
+	var enemy_groups = find_enemy_groups()
+	if enemy_groups.size() > 0:
+		move_to(enemy_groups[0]["center"])
+		return
+
+	# Fallback to nearest enemy
+	var enemy = find_nearest_enemy()
+	if enemy:
+		move_to(enemy.global_position)
 
 
 func die(killer: Node2D) -> void:
