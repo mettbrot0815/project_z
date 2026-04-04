@@ -127,4 +127,5 @@ settings/show_navigation=true
 TerritoryManager="*res://scripts/core/territory_manager.gd"
 CombatManager="*res://scripts/core/combat_manager.gd"
 GameState="*res://scripts/core/game_state.gd"
+SelectionManager="*res://scripts/game/selection_manager.gd"
 

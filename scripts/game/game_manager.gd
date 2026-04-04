@@ -44,14 +44,14 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	# Right click orders
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		var world_pos = get_global_mouse_position()
+		var world_pos = get_mouse_world_position()
 		selection_manager.issue_move_order(world_pos)
 		
 		# Play "move" voice bark
 		play_voice_bark("moving")
 
 
-func get_global_mouse_position() -> Vector2:
+func get_mouse_world_position() -> Vector2:
 	return get_viewport().get_canvas_transform().affine_inverse() * get_viewport().get_mouse_position()
 
 

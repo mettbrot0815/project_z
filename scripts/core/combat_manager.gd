@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		query.collide_with_areas = false
 		query.collision_mask = 0b11
 		
-		var results = get_world_2d().direct_space_state.intersect_point(query)
+		var results = get_viewport().get_world_2d().direct_space_state.intersect_point(query)
 		
 		for result in results:
 			var hit_unit = result["collider"]
@@ -57,7 +57,7 @@ func apply_splash_damage(origin: Vector2, radius: float, damage: float, attacker
 	query.transform = Transform2D(0, origin)
 	query.collision_mask = 0b11
 	
-	var results = get_world_2d().direct_space_state.intersect_shape(query)
+	var results = get_viewport().get_world_2d().direct_space_state.intersect_shape(query)
 	
 	for result in results:
 		var unit = result["collider"]

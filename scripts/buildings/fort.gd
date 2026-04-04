@@ -3,7 +3,7 @@ extends Node2D
 # Fort - main base, victory condition when destroyed
 
 @export var max_hp: float = 1000
-@export var owner: int = TerritoryManager.Owner.NEUTRAL
+@export var team_owner: int = TerritoryManager.Team.NEUTRAL
 
 var hp: float = max_hp
 var corner_turrets: Array = []
@@ -25,7 +25,7 @@ func _ready() -> void:
 		if turret_scene:
 			var turret = turret_scene.instantiate()
 			turret.global_position = global_position + turret_pos
-			turret.owner = owner
+			turret.team = team_owner
 			get_parent().add_child(turret)
 			corner_turrets.append(turret)
 
@@ -47,7 +47,7 @@ func destroy(attacker: Node2D) -> void:
 		if turret and turret.hp > 0:
 			turret.take_damage(9999, attacker)
 	
-	destroyed.emit(attacker.get_owner() if attacker.has_method("get_owner") else TerritoryManager.Owner.NEUTRAL)
+	destroyed.emit(attacker.get_team() if attacker.has_method("get_team") else TerritoryManager.Team.NEUTRAL)
 	queue_free()
 
 
@@ -57,4 +57,4 @@ func get_hp_percentage() -> float:
 
 func can_enter(unit: Node2D) -> bool:
 	# Units can enter enemy fort to destroy it
-	return unit.owner != owner
+	return unit.team != team_owner
