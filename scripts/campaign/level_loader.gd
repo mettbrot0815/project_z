@@ -21,7 +21,7 @@ func load_level(level_id: int) -> void:
 	show_cutscene(level_id)
 	
 	# Load terrain
-	var tile_map = $"/root/Game/TileMap"
+	var tile_map = $"/root/Main/TileMap"
 	tile_map.clear()
 	
 	# Place territories and flags
