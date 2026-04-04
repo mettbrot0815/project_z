@@ -35,6 +35,9 @@ func _ready() -> void:
 	# Load first campaign level
 	level_loader.load_level(0)
 	
+	# Connect victory signal
+	GameState.game_won.connect(_on_game_won)
+	
 	get_tree().paused = false
 
 
@@ -50,6 +53,12 @@ func _input(event: InputEvent) -> void:
 
 func get_global_mouse_position() -> Vector2:
 	return get_viewport().get_canvas_transform().affine_inverse() * get_viewport().get_mouse_position()
+
+
+func _on_game_won(_winner: int) -> void:
+	# Advance to next level after victory
+	await get_tree().create_timer(2.0).timeout  # Brief pause
+	level_loader.advance_level()
 
 
 func play_voice_bark(bark_type: String) -> void:

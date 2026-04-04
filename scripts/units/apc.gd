@@ -25,6 +25,10 @@ func _process(delta: float) -> void:
 	if not driver_alive:
 		return
 
+	# APC AI: Move toward flags to transport troops
+	if intelligence > 0:
+		_find_nearest_flag_for_transport()
+
 	last_fired += delta
 
 	if last_fired >= fire_rate and passengers.size() > 0:
@@ -47,6 +51,25 @@ func find_nearest_enemy() -> Node2D:
 	)
 
 	return enemies[0]
+
+
+func _find_nearest_flag_for_transport() -> void:
+	var nearest_flag: Node2D = null
+	var nearest_distance: float = INF
+	
+	for territory_id in TerritoryManager.territories:
+		var territory = TerritoryManager.territories[territory_id]
+		if territory.owner == owner:
+			continue
+		
+		var flag = territory.flag
+		var distance = global_position.distance_to(flag.global_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest_flag = flag
+	
+	if nearest_flag:
+		move_to(nearest_flag.global_position)
 
 
 func can_load_unit(unit: Node2D) -> bool:
