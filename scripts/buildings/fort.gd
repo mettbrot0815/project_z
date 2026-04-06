@@ -69,7 +69,7 @@ func destroy(attacker: Node2D) -> void:
 		if turret and turret.hp > 0:
 			turret.take_damage(9999, attacker)
 	
-	destroyed.emit(attacker.get_team() if attacker.has_method("get_team") else TerritoryManager.Owner.NEUTRAL)
+	destroyed.emit(attacker.get_team() if attacker.has_method("get_team") else 0)
 	queue_free()
 
 

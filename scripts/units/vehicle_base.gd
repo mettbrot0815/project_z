@@ -22,9 +22,10 @@ func _ready() -> void:
 
 
 func take_damage(amount: float, attacker: Node2D) -> void:
-	# If driver was hit directly
-	if attacker and attacker.global_position.distance_to(global_position + driver_hitbox_offset) < 16:
-		if driver_alive and has_driver:
+	if driver_alive and has_driver and attacker != null:
+		var driver_pos = global_position + driver_hitbox_offset
+		var attack_pos = attacker.global_position if attacker.has_method("global_position") else global_position
+		if attack_pos.distance_to(driver_pos) < 24:
 			kill_driver()
 			return
 
@@ -35,7 +36,7 @@ func take_damage(amount: float, attacker: Node2D) -> void:
 func kill_driver() -> void:
 	driver_alive = false
 	team = Team.NEUTRAL
-	team_id = TerritoryManager.Owner.NEUTRAL
+	team_id = 0  # NEUTRAL
 	driver_killed.emit()
 	
 	# Eject driver sprite
@@ -49,7 +50,7 @@ func kill_driver() -> void:
 		else:
 			driver.global_position = global_position + driver_hitbox_offset
 			driver.velocity = Vector2(randf_range(-80, 80), -150)
-			get_parent().add_child(driver)
+			GameManager.units_container.add_child(driver)
 	
 	# Vehicle becomes instantly claimable by any player
 	set_process_internal(false)

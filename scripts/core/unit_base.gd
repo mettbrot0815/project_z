@@ -70,6 +70,9 @@ func _process(delta: float) -> void:
 	if hp <= 0:
 		return
 	_update_damage_smoke(delta)
+	if not TerritoryManager:
+		return
+	_run_ai()
 
 
 func move_to(target_position: Vector2) -> void:
@@ -168,7 +171,7 @@ func get_team_id() -> int:
 
 # Public method for finding nearest enemy (used by child classes)
 func find_nearest_enemy() -> Node2D:
-	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+	var enemies = CombatManager.get_cached_enemies().filter(func(unit):
 		return unit.team != team and unit.hp > 0 and unit != self
 	)
 	
@@ -188,7 +191,7 @@ var GROUP_SIZE_THRESHOLD: int = 3
 var GROUP_DETECTION_RADIUS: float = 100.0
 
 func find_enemy_groups() -> Array:
-	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+	var enemies = CombatManager.get_cached_enemies().filter(func(unit):
 		return unit.team != team and unit.hp > 0
 	)
 	
@@ -209,37 +212,29 @@ func find_enemy_groups() -> Array:
 
 
 # Intelligence based autonomous AI
-func _process(_delta: float) -> void:
+func _run_ai() -> void:
 	if team == Team.NEUTRAL:
 		return
 	
 	match intelligence:
-		0: # Grunt: only rush flags
-			_find_nearest_flag()
-		1: # Psycho: attack nearest enemy
-			_find_nearest_enemy()
-		2: # Tough: attack vehicles
-			_find_nearest_vehicle()
-		3: # Sniper: prioritize drivers
-			_find_nearest_driver()
-		4: # Elite: avoid danger
-			_avoid_threats()
-		5: # Commander: strategic decisions
-			_strategic_behaviour()
+		0: _find_nearest_flag()
+		1: _attack_nearest_enemy()
+		2: _attack_nearest_vehicle()
+		3: _attack_nearest_driver()
+		4: _avoid_threats()
+		5: _strategic_behaviour()
 
 
 func _find_nearest_flag() -> void:
-	if not TerritoryManager:
-		return
 	var nearest_flag: Node2D = null
 	var nearest_distance: float = INF
 	
 	for territory_id in TerritoryManager.territories:
 		var territory = TerritoryManager.territories[territory_id]
-		if territory.owner == team:
+		if territory.get("owner") == team:
 			continue
 		
-		var flag = territory.flag
+		var flag = territory.get("flag")
 		if flag:
 			var distance = global_position.distance_to(flag.global_position)
 			if distance < nearest_distance:
@@ -250,63 +245,78 @@ func _find_nearest_flag() -> void:
 		move_to(nearest_flag.global_position)
 
 
-func _find_nearest_enemy() -> void:
-	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != team and unit.hp > 0 and unit != self
-	)
-	
-	if enemies.size() == 0:
+func _attack_nearest_enemy() -> void:
+	var nearest = find_nearest_enemy()
+	if nearest == null:
+		_find_nearest_flag()
 		return
 	
-	enemies.sort_custom(func(a, b):
-		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
-	)
-	
-	var nearest_enemy = enemies[0]
-	if nearest_enemy:
-		move_to(nearest_enemy.global_position)
+	var dist = global_position.distance_to(nearest.global_position)
+	if dist < 300:
+		_fire_at(nearest)
+	else:
+		move_to(nearest.global_position)
 
 
-func _find_nearest_vehicle() -> void:
-	var vehicles = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+func _attack_nearest_vehicle() -> void:
+	var vehicles = CombatManager.get_cached_enemies().filter(func(unit):
 		return unit.team != team and unit.hp > 0 and unit != self and unit.unit_type in ["jeep", "light_tank", "medium_tank", "heavy_tank", "apc", "crane", "missile_launcher"]
 	)
 	
-	if vehicles.size() == 0:
+	if vehicles.is_empty():
+		_find_nearest_flag()
 		return
 	
 	vehicles.sort_custom(func(a, b):
 		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 	)
 	
-	var nearest_vehicle = vehicles[0]
-	if nearest_vehicle:
-		move_to(nearest_vehicle.global_position)
+	var target = vehicles[0]
+	var dist = global_position.distance_to(target.global_position)
+	if dist < 300:
+		_fire_at(target)
+	else:
+		move_to(target.global_position)
 
 
-func _find_nearest_driver() -> void:
-	var vehicles_with_drivers = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != team and unit.hp > 0 and unit != self and unit.unit_type in ["jeep", "light_tank", "medium_tank", "heavy_tank", "apc", "crane", "missile_launcher"] and "driver_alive" in unit and unit.driver_alive
+func _attack_nearest_driver() -> void:
+	var vehicles = CombatManager.get_cached_enemies().filter(func(unit):
+		return unit.team != team and unit.hp > 0 and unit != self and unit.unit_type in ["jeep", "light_tank", "medium_tank", "heavy_tank", "apc", "crane", "missile_launcher"] and unit.get("driver_alive") == true
 	)
 	
-	if vehicles_with_drivers.size() == 0:
+	if vehicles.is_empty():
+		_find_nearest_flag()
 		return
 	
-	vehicles_with_drivers.sort_custom(func(a, b):
+	vehicles.sort_custom(func(a, b):
 		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 	)
 	
-	var nearest_vehicle = vehicles_with_drivers[0]
-	if nearest_vehicle:
-		move_to(nearest_vehicle.global_position)
+	var target = vehicles[0]
+	var dist = global_position.distance_to(target.global_position)
+	if dist < 300:
+		_fire_at(target)
+	else:
+		move_to(target.global_position)
+
+
+func _fire_at(target_unit: Node2D) -> void:
+	if target_unit == null or target_unit.hp <= 0:
+		return
+	
+	if Time.get_ticks_msec() / 1000.0 - last_fired < fire_rate:
+		return
+	
+	last_fired = Time.get_ticks_msec() / 1000.0
+	CombatManager.fire_projectile(global_position, target_unit.global_position, damage, self)
 
 
 func _avoid_threats() -> void:
-	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+	var enemies = CombatManager.get_cached_enemies().filter(func(unit):
 		return unit.team != team and unit.hp > 0 and unit != self
 	)
 	
-	if enemies.size() == 0:
+	if enemies.is_empty():
 		return
 	
 	enemies.sort_custom(func(a, b):
@@ -315,19 +325,28 @@ func _avoid_threats() -> void:
 	
 	var nearest_enemy = enemies[0]
 	if nearest_enemy:
-		var away_direction = (global_position - nearest_enemy.global_position).normalized()
-		var target_pos = global_position + away_direction * 100
-		target_pos.x = clamp(target_pos.x, 0, MAP_SIZE.x)
-		target_pos.y = clamp(target_pos.y, 0, MAP_SIZE.y)
-		move_to(target_pos)
+		var dist = global_position.distance_to(nearest_enemy.global_position)
+		if dist < 200:
+			var away_direction = (global_position - nearest_enemy.global_position).normalized()
+			var target_pos = global_position + away_direction * 150
+			target_pos.x = clamp(target_pos.x, 0, MAP_SIZE.x)
+			target_pos.y = clamp(target_pos.y, 0, MAP_SIZE.y)
+			move_to(target_pos)
+		elif dist < 300:
+			_fire_at(nearest_enemy)
+		else:
+			_find_nearest_flag()
 
 
 func _strategic_behaviour() -> void:
-	var rand_choice = randi() % 2
-	if rand_choice == 0:
+	var enemies = CombatManager.get_cached_enemies().filter(func(u):
+		return u.team != team and u.hp > 0
+	)
+	
+	if enemies.is_empty() or randi() % 3 == 0:
 		_find_nearest_flag()
 	else:
-		_find_nearest_enemy()
+		_attack_nearest_enemy()
 
 
 func is_moving() -> bool:

@@ -78,7 +78,7 @@ func _strategic_behaviour() -> void:
 
 func find_nearest_flag() -> Node2D:
 	var flags = get_tree().get_nodes_in_group("flag").filter(func(f):
-		return f.team_owner == team_id or f.team_owner == TerritoryManager.Owner.NEUTRAL
+		return f.team_owner == team_id or f.team_owner == 0  # NEUTRAL
 	)
 
 	if flags.size() == 0:

@@ -25,30 +25,30 @@ func _physics_process(delta: float) -> void:
 
 
 func check_victory_conditions() -> void:
-	# Check if enemy fort is destroyed
+# Check if enemy fort is destroyed
 	var enemy_forts = get_tree().get_nodes_in_group("fort").filter(func(fort):
-		return fort.get_team_id() == TerritoryManager.Owner.BLUE
+		return fort.get_team_id() == 2  # BLUE
 	)
 
 	for fort in enemy_forts:
 		if fort.hp <= 0:
-			game_won.emit(TerritoryManager.Owner.RED)
+			game_won.emit(1)  # RED
 			game_running = false
 			return
 
 	# Check if all enemy units are destroyed
 	var enemy_units = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.get_team_id() == TerritoryManager.Owner.BLUE and unit.hp > 0
+		return unit.get_team_id() == 2 and unit.hp > 0  # BLUE
 	)
 
 	if enemy_units.size() == 0:
-		game_won.emit(TerritoryManager.Owner.RED)
+		game_won.emit(1)  # RED
 		game_running = false
 		return
 
 	# Check player fort destruction (loss condition)
 	var player_forts = get_tree().get_nodes_in_group("fort").filter(func(fort):
-		return fort.get_team_id() == TerritoryManager.Owner.RED
+		return fort.get_team_id() == 1  # RED
 	)
 
 	for fort in player_forts:

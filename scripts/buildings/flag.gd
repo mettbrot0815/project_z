@@ -74,7 +74,7 @@ func get_team_id() -> int:
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("get_team_id"):
 		var unit_owner = body.get_team_id()
-		if unit_owner in [TerritoryManager.Owner.RED, TerritoryManager.Owner.BLUE]:
+		if unit_owner in [1, 2]:  # RED or BLUE
 			if team_owner != unit_owner:
 				capture(unit_owner)
 

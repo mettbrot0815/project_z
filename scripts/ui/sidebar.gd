@@ -43,7 +43,7 @@ func update_factory_panel() -> void:
 
 
 func update_status() -> void:
-	var player_territories = TerritoryManager.get_territory_count(TerritoryManager.Owner.RED)
+	var player_territories = TerritoryManager.get_territory_count(1)  # RED team
 	territory_count.text = "Territories: %d" % player_territories
 	multiplier_label.text = "Speed: x%.2f" % TerritoryManager.production_multiplier
 

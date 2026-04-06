@@ -330,7 +330,7 @@ func find_nearest_unclaimed_flag() -> Vector2:
 		if territory == null:
 			continue
 		var owner = territory.get("owner", -1)
-		if owner == TerritoryManager.Owner.NEUTRAL:
+		if owner == 0:  # NEUTRAL
 			var dist = ai_center.distance_to(flag.global_position)
 			if dist < nearest_dist:
 				nearest_dist = dist

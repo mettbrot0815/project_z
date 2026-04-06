@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var team_owner: int = 0  # 0=NEUTRAL, 1=RED, 2=BLUE
+
 # Factory production system - exact original Z behavior
 # Critical: Timer CONTINUES when factory is captured mid-build (no reset)
 
@@ -13,8 +15,6 @@ signal production_completed(unit: Node2D)
 var current_build: String = ""
 var build_progress: float = 0.0
 var is_producing: bool = false
-var team_owner: int = 0  # Use int to match TerritoryManager.Owner enum values
-
 var production_queue: Array[String] = []
 
 var _sprite: Sprite2D
@@ -55,7 +55,7 @@ func _create_placeholder() -> ImageTexture:
 
 
 func _physics_process(delta: float) -> void:
-	if is_producing and team_owner != TerritoryManager.Owner.NEUTRAL:
+	if is_producing and team_owner != 0:  # Not NEUTRAL
 		var speed = TerritoryManager.get_production_speed_for_owner(team_owner)
 		build_progress += delta * speed
 		
@@ -98,11 +98,11 @@ func complete_production() -> void:
 			start_production(production_queue.pop_front())
 		return
 	
-	# Set both owner (int) and team (enum) to match TerritoryManager.Owner
-	unit.owner = team_owner
-	unit.team = team_owner
+	# Set team_id (int) and team (int) to match the pattern used elsewhere
+	unit.team_id = team_owner
+	unit.team = team_owner  # Direct assignment as int (0=NEUTRAL, 1=RED, 2=BLUE)
 	unit.global_position = global_position + Vector2(randf_range(-32, 32), 0)
-	get_parent().add_child(unit)
+	GameManager.units_container.add_child(unit)
 	production_completed.emit(unit)
 	
 	current_build = ""
