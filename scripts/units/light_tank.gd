@@ -12,6 +12,20 @@ func _ready() -> void:
 	unit_type = "light_tank"
 	fire_rate = 1.5
 	has_driver = true
+	
+	_setup_sprite()
+
+
+func _setup_sprite() -> void:
+	if has_node("Sprite2D"):
+		var old_sprite = $Sprite2D
+		remove_child(old_sprite)
+		old_sprite.queue_free()
+	
+	# Sprite folder is "light" but unit_type is "light_tank"
+	_sprite = SpriteManager.create_vehicle_sprite("light_tank", team_id)
+	add_child(_sprite)
+	_sprite.play("base")
 
 
 func _process(delta: float) -> void:

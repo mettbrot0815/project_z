@@ -7,6 +7,7 @@ extends UnitBase
 
 var target_rotation: float = 0.0
 var current_rotation: float = 0.0
+var _sprite: AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -18,6 +19,19 @@ func _ready() -> void:
 	unit_type = "gatling"
 	fire_rate = 0.08
 	move_speed = 0
+	
+	_setup_sprite()
+
+
+func _setup_sprite() -> void:
+	if has_node("Sprite2D"):
+		var old_sprite = $Sprite2D
+		remove_child(old_sprite)
+		old_sprite.queue_free()
+	
+	_sprite = SpriteManager.create_robot_sprite("gatling", team_id)
+	add_child(_sprite)
+	_sprite.play("walk")
 
 
 func _process(delta: float) -> void:

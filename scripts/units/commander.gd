@@ -2,6 +2,8 @@ extends UnitBase
 
 # Commander - highest intelligence, strategic AI, powerful
 
+var _sprite: AnimatedSprite2D
+
 func _ready() -> void:
 	super._ready()
 	max_hp = 150
@@ -11,6 +13,19 @@ func _ready() -> void:
 	intelligence = 5
 	unit_type = "commander"
 	fire_rate = 0.5
+	
+	_setup_sprite()
+
+
+func _setup_sprite() -> void:
+	if has_node("Sprite2D"):
+		var old_sprite = $Sprite2D
+		remove_child(old_sprite)
+		old_sprite.queue_free()
+	
+	_sprite = SpriteManager.create_robot_sprite("commander", team_id)
+	add_child(_sprite)
+	_sprite.play("walk")
 
 
 func _process(delta: float) -> void:

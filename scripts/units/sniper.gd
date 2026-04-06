@@ -5,6 +5,8 @@ extends UnitBase
 const FIRE_RATE = 2.2
 const RANGE = 400.0
 
+var _sprite: AnimatedSprite2D
+
 
 func _ready() -> void:
 	super._ready()
@@ -14,6 +16,19 @@ func _ready() -> void:
 	move_speed = 85
 	intelligence = 3
 	unit_type = "sniper"
+	
+	_setup_sprite()
+
+
+func _setup_sprite() -> void:
+	if has_node("Sprite2D"):
+		var old_sprite = $Sprite2D
+		remove_child(old_sprite)
+		old_sprite.queue_free()
+	
+	_sprite = SpriteManager.create_robot_sprite("sniper", team_id)
+	add_child(_sprite)
+	_sprite.play("walk")
 
 
 func _process(delta: float) -> void:

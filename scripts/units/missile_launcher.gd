@@ -16,6 +16,19 @@ func _ready() -> void:
 	unit_type = "missile_launcher"
 	fire_rate = 5.0
 	has_driver = true
+	
+	_setup_sprite()
+
+
+func _setup_sprite() -> void:
+	if has_node("Sprite2D"):
+		var old_sprite = $Sprite2D
+		remove_child(old_sprite)
+		old_sprite.queue_free()
+	
+	_sprite = SpriteManager.create_vehicle_sprite("missile_launcher", team_id)
+	add_child(_sprite)
+	_sprite.play("base")
 
 
 func _process(delta: float) -> void:

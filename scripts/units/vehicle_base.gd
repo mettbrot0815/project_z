@@ -11,6 +11,7 @@ signal driver_killed()
 
 var driver_alive: bool = true
 var driver_hitbox: Area2D
+var _sprite: AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -95,3 +96,17 @@ func set_damage_state(state: int) -> void:
 	# Visual damage states: 0=clean, 1=smoking, 2=on fire, 3=critical
 	# Implementation would update sprite frame here
 	pass
+
+
+func _setup_sprite() -> void:
+	# Override in child class to set up vehicle-specific sprites
+	pass
+
+
+func update_sprite_damage_state(damage_percent: float) -> void:
+	if not _sprite or not _sprite.sprite_frames:
+		return
+	
+	# Switch animation based on damage
+	if damage_percent >= 0.3 and _sprite.animation == "base":
+		_sprite.play("damaged")

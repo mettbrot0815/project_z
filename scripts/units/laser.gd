@@ -2,6 +2,8 @@ extends UnitBase
 
 # Laser - powerful laser weapon, high intelligence, accurate
 
+var _sprite: AnimatedSprite2D
+
 func _ready() -> void:
 	super._ready()
 	max_hp = 75
@@ -11,6 +13,19 @@ func _ready() -> void:
 	intelligence = 4
 	unit_type = "laser"
 	fire_rate = 0.4
+	
+	_setup_sprite()
+
+
+func _setup_sprite() -> void:
+	if has_node("Sprite2D"):
+		var old_sprite = $Sprite2D
+		remove_child(old_sprite)
+		old_sprite.queue_free()
+	
+	_sprite = SpriteManager.create_robot_sprite("laser", team_id)
+	add_child(_sprite)
+	_sprite.play("walk")
 
 
 func _process(delta: float) -> void:
