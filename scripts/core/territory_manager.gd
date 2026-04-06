@@ -31,7 +31,11 @@ func register_territory(territory_id: int, flag_node: Node2D) -> void:
 	}
 	
 	owned_territories[Owner.NEUTRAL] += 1
-	flag_node.body_entered.connect(func(body): _on_flag_overlap(territory_id, body))
+	
+	# Connect to Area2D's body_entered signal (flag has an Area2D child)
+	var flag_area = flag_node.get_node_or_null("Area2D")
+	if flag_area and flag_area.has_signal("body_entered"):
+		flag_area.body_entered.connect(func(body): _on_flag_overlap(territory_id, body))
 
 
 func capture_territory(territory_id: int, new_owner: Owner) -> void:
@@ -62,17 +66,17 @@ func update_production_multiplier() -> void:
 	production_multiplier_updated.emit(production_multiplier)
 
 
-func get_production_speed_for_owner(owner: Owner) -> float:
+func get_production_speed_for_owner(team_owner: Owner) -> float:
 	# Production speed = base_time / (1 + 0.15 * territories_owned)
-	return 1.0 + (MULTIPLIER_PER_TERRITORY * owned_territories[owner])
+	return 1.0 + (MULTIPLIER_PER_TERRITORY * owned_territories[team_owner])
 
 
 func _on_flag_overlap(territory_id: int, body: Node2D) -> void:
-	if body.has_method("get_owner"):
-		var unit_owner = body.get_owner()
+	if body.has_method("get_team_id"):
+		var unit_owner = body.get_team_id()
 		if unit_owner in [Owner.RED, Owner.BLUE]:
 			capture_territory(territory_id, unit_owner)
 
 
-func get_territory_count(owner: Owner) -> int:
-	return owned_territories[owner]
+func get_territory_count(team_owner: Owner) -> int:
+	return owned_territories[team_owner]

@@ -11,7 +11,6 @@ func _ready() -> void:
 	intelligence = 3
 	unit_type = "heavy_tank"
 	fire_rate = 3.0
-	last_fired = 0.0
 	has_driver = true
 
 
@@ -31,7 +30,6 @@ func _process(delta: float) -> void:
 
 
 func find_priority_target() -> Node2D:
-	# Heavy tank prioritizes buildings and fortified positions
 	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
 		return b.team != self.team and b.hp > 0
 	)
@@ -42,7 +40,6 @@ func find_priority_target() -> Node2D:
 		)
 		return buildings[0]
 
-	# Then vehicles
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
 		return v.team != self.team and v.hp > 0
 	)
@@ -58,7 +55,7 @@ func find_priority_target() -> Node2D:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -72,7 +69,6 @@ func find_nearest_enemy() -> Node2D:
 
 
 func die(killer: Node2D) -> void:
-	# Heavy tanks explode with devastating turret flying
 	CombatManager.apply_splash_damage(global_position, 160, damage * 2.5, killer)
 
 	# Create flying turret effect

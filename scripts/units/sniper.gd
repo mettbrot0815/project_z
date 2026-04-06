@@ -2,7 +2,6 @@ extends UnitBase
 
 # Sniper - high damage, long range, prioritizes vehicle drivers
 
-var last_fired: float = 0.0
 const FIRE_RATE = 2.2
 const RANGE = 400.0
 
@@ -46,7 +45,7 @@ func find_priority_target() -> Node2D:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 	
 	if enemies.size() == 0:

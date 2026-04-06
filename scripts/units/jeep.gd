@@ -11,7 +11,6 @@ func _ready() -> void:
 	intelligence = 2
 	unit_type = "jeep"
 	fire_rate = 0.5
-	last_fired = 0.0
 	has_driver = true
 
 
@@ -32,7 +31,7 @@ func _process(delta: float) -> void:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -46,6 +45,5 @@ func find_nearest_enemy() -> Node2D:
 
 
 func die(killer: Node2D) -> void:
-	# Jeeps explode with small splash
 	CombatManager.apply_splash_damage(global_position, 32, damage, killer)
 	super.die(killer)

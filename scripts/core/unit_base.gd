@@ -11,13 +11,14 @@ enum Team { NEUTRAL, RED, BLUE }
 @export var intelligence: int = 0 # 0-5 scale: lower = dumber
 @export var unit_type: String = "robot"
 @export var fire_rate: float = 1.0
-var last_fired: float = 0.0
+@export var last_fired: float = 0.0
 
 signal died(killer: Node2D)
 signal team_changed(new_team: Team)
 
-# Use int for owner to match TerritoryManager.Owner enum
-var owner: int = 0
+# Use team_id instead of owner to avoid conflict with CharacterBody2D.owner
+var team_id: int = 0
+var hp: float = 100.0
 var team: Team = Team.NEUTRAL:
 	set(value):
 		team = value
@@ -29,15 +30,19 @@ var target: Node2D = null
 var navigation_agent: NavigationAgent2D
 
 
+const MAP_SIZE: Vector2 = Vector2(2048, 2048)
+
+
 func _ready() -> void:
 	navigation_agent = $NavigationAgent2D
 	navigation_agent.max_speed = move_speed
+	hp = max_hp  # Initialize hp from max_hp
 	
 	if intelligence > 0:
 		set_process_internal(true)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if hp <= 0:
 		return
 	
@@ -47,16 +52,21 @@ func _physics_process(delta: float) -> void:
 	var next_pos = navigation_agent.get_next_path_position()
 	velocity = global_position.direction_to(next_pos) * move_speed
 	move_and_slide()
+	
+	# Clamp position to map boundaries
+	global_position.x = clamp(global_position.x, 0, MAP_SIZE.x)
+	global_position.y = clamp(global_position.y, 0, MAP_SIZE.y)
 
 
 func move_to(target_position: Vector2) -> void:
+	# Clamp target to map boundaries
+	target_position.x = clamp(target_position.x, 0, MAP_SIZE.x)
+	target_position.y = clamp(target_position.y, 0, MAP_SIZE.y)
 	navigation_agent.target_position = target_position
 
 
 func attack(target_unit: Node2D) -> void:
 	target = target_unit
-	# Implement attack logic
-	pass
 
 
 func take_damage(amount: float, attacker: Node2D) -> void:
@@ -74,8 +84,12 @@ func get_team() -> Team:
 	return team
 
 
+func get_team_id() -> int:
+	return team_id
+
+
 # Intelligence based autonomous AI
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if team == Team.NEUTRAL:
 		return
 	
@@ -168,7 +182,6 @@ func _find_nearest_driver() -> void:
 
 
 func _avoid_threats() -> void:
-	# Move away from nearest enemy
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
 		return unit.team != team and unit.hp > 0 and unit != self
 	)
@@ -183,15 +196,13 @@ func _avoid_threats() -> void:
 	var nearest_enemy = enemies[0]
 	if nearest_enemy:
 		var away_direction = (global_position - nearest_enemy.global_position).normalized()
-		var target_pos = global_position + away_direction * 100  # Move 100 units away
-		# Clamp to prevent out-of-bounds
-		target_pos.x = clamp(target_pos.x, 0, 2048)  # Assuming map size
-		target_pos.y = clamp(target_pos.y, 0, 2048)
+		var target_pos = global_position + away_direction * 100
+		target_pos.x = clamp(target_pos.x, 0, MAP_SIZE.x)
+		target_pos.y = clamp(target_pos.y, 0, MAP_SIZE.y)
 		move_to(target_pos)
 
 
 func _strategic_behaviour() -> void:
-	# Alternate between flag-rushing and enemy-seeking
 	var rand_choice = randi() % 2
 	if rand_choice == 0:
 		_find_nearest_flag()

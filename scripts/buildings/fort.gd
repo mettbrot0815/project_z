@@ -3,9 +3,9 @@ extends Node2D
 # Fort - main base, victory condition when destroyed
 
 @export var max_hp: float = 1000
-@export var team_owner: int = TerritoryManager.Team.NEUTRAL
+@export var team_owner: int = 0
 
-var hp: float = max_hp
+var hp: float = 1000.0
 var corner_turrets: Array = []
 
 signal destroyed(by_owner: int)
@@ -15,6 +15,7 @@ signal damaged(amount: float, attacker: Node2D)
 func _ready() -> void:
 	add_to_group("fort")
 	add_to_group("building")
+	hp = max_hp
 	
 	# Create corner turrets
 	for i in range(4):
@@ -25,6 +26,7 @@ func _ready() -> void:
 		if turret_scene:
 			var turret = turret_scene.instantiate()
 			turret.global_position = global_position + turret_pos
+			turret.team_id = team_owner
 			turret.team = team_owner
 			get_parent().add_child(turret)
 			corner_turrets.append(turret)
@@ -39,16 +41,18 @@ func take_damage(amount: float, attacker: Node2D) -> void:
 
 
 func destroy(attacker: Node2D) -> void:
-	# Massive explosion
 	CombatManager.apply_splash_damage(global_position, 300, 200, attacker)
 	
-	# Destroy corner turrets
 	for turret in corner_turrets:
 		if turret and turret.hp > 0:
 			turret.take_damage(9999, attacker)
 	
-	destroyed.emit(attacker.get_team() if attacker.has_method("get_team") else TerritoryManager.Team.NEUTRAL)
+	destroyed.emit(attacker.get_team() if attacker.has_method("get_team") else TerritoryManager.Owner.NEUTRAL)
 	queue_free()
+
+
+func get_team_id() -> int:
+	return team_owner
 
 
 func get_hp_percentage() -> float:
@@ -56,5 +60,4 @@ func get_hp_percentage() -> float:
 
 
 func can_enter(unit: Node2D) -> bool:
-	# Units can enter enemy fort to destroy it
 	return unit.team != team_owner

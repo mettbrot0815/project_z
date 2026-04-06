@@ -3,7 +3,7 @@ extends Node2D
 # Main game manager node
 # Orchestrates all game systems
 
-@onready var tile_map: TileMap = $TileMap
+@onready var tile_map_layer: TileMapLayer = $TileMap
 @onready var navigation_region: NavigationRegion2D = $NavigationRegion2D
 @onready var selection_manager: Node = $SelectionManager
 @onready var level_loader: Node = $LevelLoader
@@ -25,9 +25,9 @@ func _ready() -> void:
 	var rect = Rect2(0, 0, 2048, 2048)
 	navigation_region.navigation_polygon.add_polygon([
 		rect.position,
-		rect.get_end(),
-		Vector2(rect.position.x, rect.get_end().y),
-		Vector2(rect.get_end().x, rect.position.y)
+		rect.end,
+		Vector2(rect.position.x, rect.end.y),
+		Vector2(rect.end.x, rect.position.y)
 	])
 	
 	await get_tree().process_frame

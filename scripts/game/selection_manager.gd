@@ -40,7 +40,7 @@ func update_selection_box() -> void:
 	var new_selection = []
 	for unit in get_tree().get_nodes_in_group("selectable"):
 		if rect.has_point(unit.global_position):
-			if unit.get_team() == TerritoryManager.Team.RED:
+			if unit.get_team_id() == TerritoryManager.Owner.RED:
 				new_selection.append(unit)
 
 	selected_units = new_selection
@@ -57,7 +57,7 @@ func finish_selection() -> void:
 		var results = get_viewport().get_world_2d().direct_space_state.intersect_point(query)
 		if results.size() > 0:
 			var unit = results[0]["collider"]
-			if unit.get_owner() == TerritoryManager.Owner.RED:
+			if unit.get_team_id() == TerritoryManager.Owner.RED:
 				set_selection([unit])
 			else:
 				clear_selection()

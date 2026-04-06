@@ -15,7 +15,6 @@ func _ready() -> void:
 	intelligence = 2
 	unit_type = "apc"
 	fire_rate = 1.0
-	last_fired = 0.0
 	has_driver = true
 
 
@@ -25,7 +24,6 @@ func _process(delta: float) -> void:
 	if not driver_alive:
 		return
 
-	# APC AI: Move toward flags to transport troops
 	if intelligence > 0:
 		_find_nearest_flag_for_transport()
 
@@ -40,7 +38,7 @@ func _process(delta: float) -> void:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -59,7 +57,7 @@ func _find_nearest_flag_for_transport() -> void:
 	
 	for territory_id in TerritoryManager.territories:
 		var territory = TerritoryManager.territories[territory_id]
-		if territory.owner == owner:
+		if territory.owner == team_id:
 			continue
 		
 		var flag = territory.flag
@@ -73,27 +71,34 @@ func _find_nearest_flag_for_transport() -> void:
 
 
 func can_load_unit(unit: Node2D) -> bool:
-	return passengers.size() < max_passengers and unit.team == owner
+	return passengers.size() < max_passengers and unit.team == team_id
 
 
 func load_unit(unit: Node2D) -> void:
-	if can_load_unit(unit) and unit.has_method("get_owner") and unit.get_owner() == owner:
+	if can_load_unit(unit) and unit.has_method("get_team_id") and unit.get_team_id() == team_id:
 		passengers.append(unit)
 		unit.visible = false
-		unit.set_process(false)
+		if unit.has_method("set_physics_process"):
+			unit.set_physics_process(false)
+		if unit.has_method("set_process_internal"):
+			unit.set_process_internal(false)
+		if "navigation_agent" in unit:
+			unit.navigation_agent.target_position = unit.global_position
 
 
 func unload_units() -> void:
 	for passenger in passengers:
 		passenger.global_position = global_position + Vector2(randf_range(-32, 32), randf_range(-32, 32))
 		passenger.visible = true
-		passenger.set_process(true)
+		if passenger.has_method("set_physics_process"):
+			passenger.set_physics_process(true)
+		if passenger.has_method("set_process_internal") and passenger.intelligence > 0:
+			passenger.set_process_internal(true)
 
 	passengers.clear()
 
 
 func die(killer: Node2D) -> void:
-	# APC explodes and unloads survivors
 	unload_units()
 	CombatManager.apply_splash_damage(global_position, 64, damage, killer)
 	super.die(killer)

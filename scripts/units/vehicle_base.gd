@@ -16,7 +16,8 @@ var driver_hitbox: Area2D
 func _ready() -> void:
 	super._ready()
 	driver_hitbox = $DriverHitbox
-	driver_hitbox.body_entered.connect(_on_driver_hit)
+	if driver_hitbox:
+		driver_hitbox.body_entered.connect(_on_driver_hit)
 
 
 func take_damage(amount: float, attacker: Node2D) -> void:
@@ -27,27 +28,32 @@ func take_damage(amount: float, attacker: Node2D) -> void:
 			return
 
 	super.take_damage(amount, attacker)
-
-	# Update visual damage state
 	update_damage_visuals()
 
 
 func kill_driver() -> void:
 	driver_alive = false
 	team = Team.NEUTRAL
+	team_id = TerritoryManager.Owner.NEUTRAL
 	driver_killed.emit()
 	
 	# Eject driver sprite
 	var driver_scene = load("res://scenes/units/driver.tscn")
-	if driver_scene:
+	if driver_scene == null:
+		push_error("VehicleBase: Failed to load driver scene")
+	else:
 		var driver = driver_scene.instantiate()
-		driver.global_position = global_position + driver_hitbox_offset
-		driver.velocity = Vector2(randf_range(-80, 80), -150)
-		get_parent().add_child(driver)
+		if driver == null:
+			push_error("VehicleBase: Failed to instantiate driver")
+		else:
+			driver.global_position = global_position + driver_hitbox_offset
+			driver.velocity = Vector2(randf_range(-80, 80), -150)
+			get_parent().add_child(driver)
 	
 	# Vehicle becomes instantly claimable by any player
 	set_process_internal(false)
-	navigation_agent.target_position = global_position
+	if navigation_agent:
+		navigation_agent.target_position = global_position
 	velocity = Vector2.ZERO
 
 
@@ -64,31 +70,28 @@ func can_be_captured() -> bool:
 
 func capture(new_owner: Team) -> void:
 	if can_be_captured():
-		owner = new_owner
+		team_id = new_owner
+		team = new_owner
 		driver_alive = true
 		set_process_internal(intelligence > 0)
 
 
 func update_damage_visuals() -> void:
+	if max_hp <= 0:
+		return
 	var damage_percent = (max_hp - hp) / max_hp
 
 	if damage_percent < 0.3:
-		# No damage
 		set_damage_state(0)
 	elif damage_percent < 0.6:
-		# Smoke damage
 		set_damage_state(1)
 	elif damage_percent < 0.9:
-		# Oil/fire damage
 		set_damage_state(2)
 	else:
-		# Critical damage
 		set_damage_state(3)
 
 
 func set_damage_state(state: int) -> void:
-	# This would change sprite frames or particle effects
-	# For now, just print state changes
 	match state:
 		0:
 			print("%s: No damage" % unit_type)

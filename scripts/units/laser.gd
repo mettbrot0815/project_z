@@ -11,7 +11,6 @@ func _ready() -> void:
 	intelligence = 4
 	unit_type = "laser"
 	fire_rate = 0.4
-	last_fired = 0.0
 
 
 func _process(delta: float) -> void:
@@ -26,9 +25,8 @@ func _process(delta: float) -> void:
 
 
 func find_priority_target() -> Node2D:
-	# High intelligence: prioritize strategic targets
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
-		return v.unit.team != self.team and v.hp > 0
+		return v.team != self.team and v.hp > 0
 	)
 
 	if vehicles.size() > 0:
@@ -37,13 +35,12 @@ func find_priority_target() -> Node2D:
 		)
 		return vehicles[0]
 
-	# Fall back to nearest enemy
 	return find_nearest_enemy()
 
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -57,13 +54,11 @@ func find_nearest_enemy() -> Node2D:
 
 
 func _avoid_threats() -> void:
-	# High intelligence laser units avoid danger
 	var threats = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and global_position.distance_to(unit.global_position) < 200
+		return unit.team != team_id and unit.hp > 0 and global_position.distance_to(unit.global_position) < 200
 	)
 
 	if threats.size() > 0:
-		# Move away from closest threat
 		var closest = threats[0]
 		var direction = (global_position - closest.global_position).normalized()
 		var target_pos = global_position + direction * 150

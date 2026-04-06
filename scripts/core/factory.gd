@@ -13,7 +13,7 @@ signal production_completed(unit: Node2D)
 var current_build: String = ""
 var build_progress: float = 0.0
 var is_producing: bool = false
-var team_owner: int = 0
+var team_owner: int = 0  # Use int to match TerritoryManager.Owner enum values
 
 var production_queue: Array[String] = []
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_producing and team_owner != TerritoryManager.Team.NEUTRAL:
+	if is_producing and team_owner != TerritoryManager.Owner.NEUTRAL:
 		var speed = TerritoryManager.get_production_speed_for_owner(team_owner)
 		build_progress += delta * speed
 		
@@ -45,14 +45,33 @@ func start_production(unit_type: String) -> void:
 func complete_production() -> void:
 	is_producing = false
 	
-	# Spawn unit
-	var unit_scene = load("res://scenes/units/%s.tscn" % current_build)
-	if unit_scene:
-		var unit = unit_scene.instantiate()
-		unit.team = team_owner
-		unit.global_position = global_position + Vector2(randf_range(-32, 32), 0)
-		get_parent().add_child(unit)
-		production_completed.emit(unit)
+	# Spawn unit with error handling
+	var scene_path = "res://scenes/units/%s.tscn" % current_build
+	var unit_scene = load(scene_path)
+	if unit_scene == null:
+		push_error("Factory: Failed to load unit scene: " + scene_path)
+		current_build = ""
+		build_progress = 0.0
+		# Process next in queue
+		if production_queue.size() > 0:
+			start_production(production_queue.pop_front())
+		return
+	
+	var unit = unit_scene.instantiate()
+	if unit == null:
+		push_error("Factory: Failed to instantiate unit from: " + scene_path)
+		current_build = ""
+		build_progress = 0.0
+		if production_queue.size() > 0:
+			start_production(production_queue.pop_front())
+		return
+	
+	# Set both owner (int) and team (enum) to match TerritoryManager.Owner
+	unit.owner = team_owner
+	unit.team = team_owner
+	unit.global_position = global_position + Vector2(randf_range(-32, 32), 0)
+	get_parent().add_child(unit)
+	production_completed.emit(unit)
 	
 	current_build = ""
 	build_progress = 0.0

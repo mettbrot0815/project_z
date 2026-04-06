@@ -5,20 +5,9 @@ extends CharacterBody2D
 
 @export var move_speed: float = 80.0
 
-var owner: int = 0  # Team owner (0=NEUTRAL, 1=RED, 2=BLUE)
-var team: int = 0
+var team_id: int = 0  # Team owner (0=NEUTRAL, 1=RED, 2=BLUE)
 var hp: float = 20.0
 var max_hp: float = 20.0
-
-
-func _ready() -> void:
-	# Set team based on owner
-	if owner == 1:
-		team = TerritoryManager.Owner.RED
-	elif owner == 2:
-		team = TerritoryManager.Owner.BLUE
-	else:
-		team = TerritoryManager.Owner.NEUTRAL
 
 
 func _physics_process(delta: float) -> void:

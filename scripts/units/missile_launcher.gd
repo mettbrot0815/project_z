@@ -11,7 +11,6 @@ func _ready() -> void:
 	intelligence = 3
 	unit_type = "missile_launcher"
 	fire_rate = 5.0
-	last_fired = 0.0
 	has_driver = true
 
 
@@ -21,7 +20,6 @@ func _process(delta: float) -> void:
 	if not driver_alive:
 		return
 
-	# Missile launcher AI: Move toward high-value targets
 	if intelligence > 0:
 		_find_high_value_target()
 
@@ -35,9 +33,8 @@ func _process(delta: float) -> void:
 
 
 func find_priority_target() -> Node2D:
-	# Missile launcher prioritizes buildings and groups
 	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
-		return b.unit.team != self.team and b.hp > 0
+		return b.team != self.team and b.hp > 0
 	)
 
 	if buildings.size() > 0:
@@ -46,7 +43,6 @@ func find_priority_target() -> Node2D:
 		)
 		return buildings[0]
 
-	# Then large groups of enemies
 	var enemy_groups = find_enemy_groups()
 	if enemy_groups.size() > 0:
 		return enemy_groups[0]["center"]
@@ -56,7 +52,7 @@ func find_priority_target() -> Node2D:
 
 func find_enemy_groups() -> Array:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0
+		return unit.team != team_id and unit.hp > 0
 	)
 
 	var groups = []
@@ -64,7 +60,7 @@ func find_enemy_groups() -> Array:
 		var nearby = enemies.filter(func(e):
 			return e != enemy and e.global_position.distance_to(enemy.global_position) < 100
 		)
-		if nearby.size() >= 3:  # Group of 4+ enemies
+		if nearby.size() >= 4:
 			var center = Vector2.ZERO
 			for e in nearby:
 				center += e.global_position
@@ -77,7 +73,7 @@ func find_enemy_groups() -> Array:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -91,9 +87,8 @@ func find_nearest_enemy() -> Node2D:
 
 
 func _find_high_value_target() -> void:
-	# Prioritize buildings
 	var buildings = get_tree().get_nodes_in_group("building").filter(func(b):
-		return b.unit.team != self.team and b.hp > 0
+		return b.team != self.team and b.hp > 0
 	)
 
 	if buildings.size() > 0:
@@ -103,19 +98,16 @@ func _find_high_value_target() -> void:
 		move_to(buildings[0].global_position)
 		return
 
-	# Then enemy groups
 	var enemy_groups = find_enemy_groups()
 	if enemy_groups.size() > 0:
 		move_to(enemy_groups[0]["center"])
 		return
 
-	# Fallback to nearest enemy
 	var enemy = find_nearest_enemy()
 	if enemy:
 		move_to(enemy.global_position)
 
 
 func die(killer: Node2D) -> void:
-	# Missile launcher explodes with massive splash
 	CombatManager.apply_splash_damage(global_position, 200, damage * 1.5, killer)
 	super.die(killer)

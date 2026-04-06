@@ -39,7 +39,7 @@ func load_level(level_id: int) -> void:
 		var factory_node = factory_scene.instantiate()
 		factory_node.global_position = Vector2(factory["position"][0], factory["position"][1])
 		factory_node.territory_id = factory["territory_id"]
-		factory_node.owner = factory["owner"]
+		factory_node.team_owner = factory["owner"]  # Fixed: use team_owner not owner
 		
 		# AI production cheat in later levels
 		if factory["owner"] == 2 and level_id > 10:
@@ -52,7 +52,9 @@ func load_level(level_id: int) -> void:
 		var unit_scene = load("res://scenes/units/%s.tscn" % unit["type"])
 		var unit_node = unit_scene.instantiate()
 		unit_node.global_position = Vector2(unit["position"][0], unit["position"][1])
-		unit_node.owner = unit["owner"]
+		# Set both team_id (int) and team (enum) to match
+		unit_node.team_id = unit["owner"]
+		unit_node.team = unit["owner"]
 		get_parent().add_child(unit_node)
 	
 	# Set planet theme
@@ -60,10 +62,9 @@ func load_level(level_id: int) -> void:
 
 
 func set_planet_theme(planet: String) -> void:
-	var planet_data = levels_data["planets"][planet]
-	# For now, set the canvas modulate to bg color
-	get_viewport().get_camera_2d().canvas_modulate = Color(planet_data["bg"])
-	# Or set a background node if exists
+	# Skip theme setting for now - canvas_modulate access is different in Godot 4
+	# This can be implemented later with proper viewport reference
+	pass
 
 
 func show_cutscene(level_id: int) -> void:

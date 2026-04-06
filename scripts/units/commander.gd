@@ -11,7 +11,6 @@ func _ready() -> void:
 	intelligence = 5
 	unit_type = "commander"
 	fire_rate = 0.5
-	last_fired = 0.0
 
 
 func _process(delta: float) -> void:
@@ -24,13 +23,11 @@ func _process(delta: float) -> void:
 			CombatManager.fire_projectile(global_position, target.global_position, damage, self)
 			last_fired = 0.0
 
-	# Commander makes strategic decisions every few seconds
 	if intelligence >= 5:
 		_strategic_behaviour()
 
 
 func find_priority_target() -> Node2D:
-	# Commander prioritizes high-value targets
 	var vehicles = get_tree().get_nodes_in_group("vehicle").filter(func(v):
 		return v.team != self.team and v.hp > 0
 	)
@@ -46,7 +43,7 @@ func find_priority_target() -> Node2D:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 
 	if enemies.size() == 0:
@@ -60,22 +57,18 @@ func find_nearest_enemy() -> Node2D:
 
 
 func _strategic_behaviour() -> void:
-	# Commander assesses situation and makes strategic decisions
 	var nearby_enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and global_position.distance_to(unit.global_position) < 400
+		return unit.team != team_id and unit.hp > 0 and global_position.distance_to(unit.global_position) < 400
 	)
 
 	var nearby_allies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team == owner and unit.hp > 0 and unit != self
+		return unit.team == team_id and unit.hp > 0 and unit != self
 	)
 
-	# If outnumbered, retreat to flag
 	if nearby_enemies.size() > nearby_allies.size() + 2:
 		var nearest_flag = find_nearest_flag()
 		if nearest_flag:
 			move_to(nearest_flag.global_position)
-
-	# If dominant, push forward aggressively
 	elif nearby_enemies.size() < nearby_allies.size():
 		var nearest_enemy = find_nearest_enemy()
 		if nearest_enemy:
@@ -84,7 +77,7 @@ func _strategic_behaviour() -> void:
 
 func find_nearest_flag() -> Node2D:
 	var flags = get_tree().get_nodes_in_group("flag").filter(func(f):
-		return f.owner == owner or f.owner == TerritoryManager.Owner.NEUTRAL
+		return f.team_owner == team_id or f.team_owner == TerritoryManager.Owner.NEUTRAL
 	)
 
 	if flags.size() == 0:

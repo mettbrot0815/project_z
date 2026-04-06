@@ -11,7 +11,6 @@ func _ready() -> void:
 	intelligence = 0
 	unit_type = "grunt"
 	fire_rate = 0.8
-	last_fired = 0.0
 
 
 func _process(delta: float) -> void:
@@ -25,7 +24,7 @@ func _process(delta: float) -> void:
 
 func find_nearest_enemy() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != owner and unit.hp > 0 and unit != self
+		return unit.team != team_id and unit.hp > 0 and unit != self
 	)
 	
 	if enemies.size() == 0:
