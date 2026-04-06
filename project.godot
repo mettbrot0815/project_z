@@ -150,3 +150,54 @@ threading/thread_model=2
 renderer/2d/use_texture_atlases=true
 rendering/2d/snap_2d_vertices_to_pixel=true
 environment/default_clear_color=Color(0, 0, 0, 1)
+
+[export]
+export_filter "all/types" include="*/*"
+export_filter "all/types" include="*.png"
+export_filter "all/types" include="*.tscn"
+export_filter "all/types" include="*.tres"
+export_filter "all/types" include="*.godot"
+export_filter "all/types" include="*.tfm"
+export_filter "all/types" include="*.svg"
+export_filter "all/types" include="*.ogg"
+export_filter "all/types" include="*.mp3"
+export_filter "all/types" include="*.wav"
+export_filter "all/types" include="*.ico"
+export_filter "all/types" include="*.bmp"
+export_filter "all/types" include="*.xsh"
+export_filter "all/types" exclude="*/*"
+export_filter "all/types" exclude="*.import"
+export_filter "all/types" exclude="*.uid"
+export_filter "all/types" exclude="*.autosave"
+export_filter "all/types" exclude="*.user"
+
+[export_presets]
+preset "Windows Desktop" {
+    "include_scene" = true
+    "include_resource" = true
+    "include_files" = true
+    "export_path" = "builds/Project_Z-v1.0-Windows.zip"
+    "export_filter" = PackedStringArray("*.godot", "*.tscn", "*.tres", "*.png", "*.ogg", "*.mp3", "*.wav")
+    "export_name" = "Z (1996) Recreation"
+    "export_options" = PackedStringArray("--windowed", "--resizable")
+}
+
+preset "Linux/X11" {
+    "include_scene" = true
+    "include_resource" = true
+    "include_files" = true
+    "export_path" = "builds/Project_Z-v1.0-Linux.zip"
+    "export_filter" = PackedStringArray("*.godot", "*.tscn", "*.tres", "*.png", "*.ogg", "*.mp3", "*.wav")
+    "export_name" = "Z (1996) Recreation"
+    "export_options" = PackedStringArray("--windowed", "--resizable")
+}
+
+preset "Web (HTML5/Self-Contained)" {
+    "include_scene" = true
+    "include_resource" = true
+    "include_files" = true
+    "export_path" = "builds/Project_Z-v1.0-Web.zip"
+    "export_filter" = PackedStringArray("*.godot", "*.tscn", "*.tres", "*.png", "*.ogg", "*.mp3", "*.wav")
+    "export_name" = "Z (1996) Recreation"
+    "export_options" = PackedStringArray("--windowed", "--resizable")
+}

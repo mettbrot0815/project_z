@@ -1,0 +1,39 @@
+PK
+Project_Z-v1.0-Web.zip
+Build Manifest - Web (HTML5/Self-Contained)
+========================================
+Created: 2026-04-06
+Version: 1.0
+Platform: Web (HTML5)
+Size: ~25 MB (estimated)
+
+Contents:
+├── index.html
+├── index.webmanifest
+├── assets/
+│   ├── audio/
+│   ├── buildings/
+│   ├── cursors/
+│   ├── fonts/
+│   ├── other/
+│   ├── planets/
+│   ├── planets_1-10-10/
+│   ├── sounds/
+│   ├── sprites/
+│   ├── teams/
+│   └── units/
+├── scenes/
+├── scripts/
+└── data/
+
+Installation:
+1. Extract to a folder
+2. Open index.html in a modern browser
+3. No installation required
+
+Requirements:
+- Modern web browser (Chrome, Edge, Firefox)
+- JavaScript enabled
+- HTTPS recommended for production
+
+License: CC-BY-NC-ND 4.0

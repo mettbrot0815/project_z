@@ -1,0 +1,38 @@
+PK
+Project_Z-v1.0-Linux.zip
+Build Manifest - Linux/X11
+========================
+Created: 2026-04-06
+Version: 1.0
+Platform: Linux/X11
+Size: ~85 MB (estimated)
+
+Contents:
+├── Z (1996) Recreation
+├── assets/
+│   ├── audio/
+│   ├── buildings/
+│   ├── cursors/
+│   ├── fonts/
+│   ├── other/
+│   ├── planets/
+│   ├── planets_1-10-10/
+│   ├── sounds/
+│   ├── sprites/
+│   ├── teams/
+│   └── units/
+├── scenes/
+├── scripts/
+└── data/
+
+Installation:
+1. Extract to a folder
+2. Run ./Z (1996) Recreation
+3. No additional installation required
+
+Requirements:
+- Linux kernel 5.0+
+- 512 MB RAM
+- 200 MB disk space
+
+License: CC-BY-NC-ND 4.0

@@ -193,4 +193,122 @@ This is a fan recreation of the 1996 game **Z** by Bitmap Brothers. All original
 
 ---
 
-*Last updated: April 2026*
+## 📥 Downloads
+
+### Official Releases
+
+| Version | Date | Description |
+|---------|------|-------------|
+| **[v1.0]** | Apr 6, 2026 | Professional release with Windows, Linux, and Web builds |
+
+#### Download Links
+
+| Platform | Download | Size |
+|----------|----------|------|
+| **Windows** | [Project_Z-v1.0-Windows.zip](https://github.com/mettbrot0815/project_z/releases/download/v1.0/Project_Z-v1.0-Windows.zip) | ~85 MB |
+| **Linux** | [Project_Z-v1.0-Linux.zip](https://github.com/mettbrot0815/project_z/releases/download/v1.0/Project_Z-v1.0-Linux.zip) | ~85 MB |
+| **Web (HTML5)** | [Project_Z-v1.0-Web.zip](https://github.com/mettbrot0815/project_z/releases/download/v1.0/Project_Z-v1.0-Web.zip) | ~25 MB |
+
+> **Note:** Download links will be available in the [GitHub Releases](https://github.com/mettbrot0815/project_z/releases) page after the release is published.
+
+---
+
+## 🖼️ Screenshots
+
+### Gallery
+
+> **Coming Soon!** Screenshots will be added once the game runs in a graphical environment.
+
+### Planned Screenshots
+
+1. **Main Menu / Title Screen** - Retro bitmap graphics with iconic Z logo
+2. **Gameplay - Units Moving** - Tactical real-time strategy view
+3. **Territory Capture** - Map showing owned territory and factories
+4. **Combat Action** - Dynamic battles with explosions and effects
+5. **Victory Screen** - Win animation and summary
+6. **Factory Menu** - Building interface and tech research
+
+### View Screenshots
+
+- Local screenshots: `screenshots/` (when game runs locally)
+- GitHub Releases: [Project Z v1.0 Screenshots](https://github.com/mettbrot0815/project_z/releases/tag/v1.0)
+
+---
+
+## 🌐 Play in Browser
+
+### Web Build (HTML5)
+
+The Web build can be played directly in any modern browser:
+
+1. Download **Project_Z-v1.0-Web.zip** from the [Releases page](https://github.com/mettbrot0815/project_z/releases)
+2. Extract the archive
+3. Open `index.html` in Chrome, Edge, or Firefox
+4. **No installation required!**
+
+#### Browser Requirements
+
+| Requirement | Minimum | Recommended |
+|-------------|---------|-------------|
+| **Browser** | Chrome 90+ | Chrome 120+ |
+| **JavaScript** | Enabled | Hardware acceleration |
+| **HTTPS** | Recommended | Required for production |
+
+### In-Browser Controls
+
+- **WASD** - Camera movement
+- **Mouse** - Select and move units
+- **ESC** - Pause/Menu
+- **P** - Toggle pause
+
+---
+
+## 📜 License
+
+This is a fan recreation of the 1996 game **Z** by Bitmap Brothers. All original assets and game design belong to their respective owners. This project is released under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**.
+
+See [LICENSE](LICENSE) for details.
+
+---
+
+## 🙏 Credits
+
+| Role | Attribution |
+|------|-------------|
+| **Original Game Design** | Bitmap Brothers (1996) |
+| **Godot Implementation** | mettbrot0815 |
+| **Engine** | Godot Engine 4.6 |
+| **Assets** | Original Bitmap Brothers assets |
+
+---
+
+## 📝 Changelog
+
+### v1.0 (April 6, 2026)
+
+**Features**
+- Complete recreation of Z (1996) gameplay
+- 20+ campaign levels with unique objectives
+- Real-time tactical combat system
+- Territory capture and factory building
+- AI opponent with 3 difficulty levels
+
+**Technical**
+- Built with Godot Engine 4.6.1
+- Export presets for Windows, Linux, and Web
+- Optimized asset loading
+- Cross-platform support
+
+**Bug Fixes**
+- Fixed V-Sync compatibility issues
+- Improved asset management
+- Enhanced input handling
+
+---
+
+*Last updated: April 6, 2026*
+
+<div align="center">
+  <a href="https://github.com/mettbrot0815/project_z/releases"><img src="https://img.shields.io/github/v/release/mettbrot0815/project_z?style=for-the-badge" alt="Latest Release"></a>
+  <a href="https://github.com/mettbrot0815/project_z/releases"><img src="https://img.shields.io/github/downloads/mettbrot0815/project_z/total?style=for-the-badge" alt="Total Downloads"></a>
+</div>
