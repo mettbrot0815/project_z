@@ -37,6 +37,10 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/shrink=1
 
+[dotnet]
+
+project/assembly_name="Z (1996) Recreation"
+
 [input]
 
 move_left={

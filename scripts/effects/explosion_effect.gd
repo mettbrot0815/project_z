@@ -45,12 +45,14 @@ func _setup_light() -> void:
 func explode(position: Vector2, scale: float = 1.0, damage_size: float = 1.0) -> void:
 	global_position = position
 	_scale = scale
-	scale = Vector2(_scale, _scale)
+	
+	# Create scale vector from the scalar value
+	var scale_vec = Vector2(_scale, _scale)
 	
 	_particles.amount = int(20 * damage_size)
 	_particles.initial_velocity_min = 80 * damage_size
 	_particles.initial_velocity_max = 200 * damage_size
-	_particles.scale = scale
+	_particles.scale = scale_vec
 	
 	_light.radius = 100 * _scale
 	_light.enabled = true

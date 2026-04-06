@@ -50,7 +50,10 @@ func kill_driver() -> void:
 		else:
 			driver.global_position = global_position + driver_hitbox_offset
 			driver.velocity = Vector2(randf_range(-80, 80), -150)
-			GameManager.units_container.add_child(driver)
+			if GameManager:
+				GameManager.units_container.add_child(driver)
+			else:
+				add_child(driver)
 	
 	# Vehicle becomes instantly claimable by any player
 	set_process_internal(false)
