@@ -104,6 +104,32 @@ func find_nearest_enemy() -> Node2D:
 	return enemies[0]
 
 
+# Public method for finding enemy groups (used by howitzer, missile_launcher)
+# Override GROUP_SIZE_THRESHOLD and GROUP_DETECTION_RADIUS in child classes
+var GROUP_SIZE_THRESHOLD: int = 3
+var GROUP_DETECTION_RADIUS: float = 100.0
+
+func find_enemy_groups() -> Array:
+	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+		return unit.team != team and unit.hp > 0
+	)
+	
+	var groups = []
+	for enemy in enemies:
+		var nearby = enemies.filter(func(e):
+			return e != enemy and e.global_position.distance_to(enemy.global_position) < GROUP_DETECTION_RADIUS
+		)
+		if nearby.size() >= GROUP_SIZE_THRESHOLD:
+			var center = Vector2.ZERO
+			for e in nearby:
+				center += e.global_position
+			center /= nearby.size()
+			groups.append({"center": center, "count": nearby.size()})
+	
+	groups.sort_custom(func(a, b): return a["count"] > b["count"])
+	return groups
+
+
 # Intelligence based autonomous AI
 func _process(_delta: float) -> void:
 	if team == Team.NEUTRAL:

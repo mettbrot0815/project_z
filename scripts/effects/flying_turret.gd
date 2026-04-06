@@ -11,8 +11,8 @@ const GRAVITY = 800.0
 
 
 func _ready() -> void:
-	# Add collision for potential turret-on-impact damage
 	# Turret has no AI, just falls and explodes
+	pass
 
 
 func _physics_process(delta: float) -> void:
