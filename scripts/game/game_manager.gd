@@ -73,3 +73,4 @@ func play_voice_bark(bark_type: String) -> void:
 		var line = barks[bark_type][randi() % barks[bark_type].size()]
 		# Voice bark played - would play audio here
 		pass
+

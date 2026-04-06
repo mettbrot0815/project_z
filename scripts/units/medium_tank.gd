@@ -17,12 +17,14 @@ func _ready() -> void:
 
 
 func _setup_sprite() -> void:
+
+	const _SPRITE_SCRIPT = preload("res://scripts/core/sprite_manager.gd")
 	if has_node("Sprite2D"):
 		var old_sprite = $Sprite2D
 		remove_child(old_sprite)
 		old_sprite.queue_free()
 	
-	_sprite = SpriteManager.create_vehicle_sprite("medium_tank", team_id)
+	_sprite = _SPRITE_SCRIPT.create_vehicle_sprite("medium_tank", team_id)
 	add_child(_sprite)
 	_sprite.play("base")
 
@@ -68,3 +70,5 @@ func die(killer: Node2D) -> void:
 		get_parent().add_child(turret)
 
 	super.die(killer)
+
+

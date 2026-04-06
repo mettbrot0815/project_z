@@ -30,3 +30,4 @@ func die(killer: Node2D) -> void:
 	if killer:
 		killer.emit_signal("driver_killed")
 	queue_free()
+

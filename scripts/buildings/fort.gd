@@ -11,11 +11,16 @@ var corner_turrets: Array = []
 signal destroyed(by_owner: int)
 signal damaged(amount: float, attacker: Node2D)
 
+var _sprite: Sprite2D
+
 
 func _ready() -> void:
 	add_to_group("fort")
 	add_to_group("building")
 	hp = max_hp
+	
+	_sprite = $Sprite2D
+	_update_sprite()
 	
 	# Create corner turrets
 	for i in range(4):
@@ -30,6 +35,23 @@ func _ready() -> void:
 			turret.team = team_owner
 			get_parent().add_child(turret)
 			corner_turrets.append(turret)
+
+
+func _update_sprite() -> void:
+	if not _sprite:
+		return
+	
+	var sprite_path = "res://assets/sprites/buildings/fort/fort_arctic_front.png"
+	if ResourceLoader.exists(sprite_path):
+		_sprite.texture = load(sprite_path)
+	else:
+		_sprite.texture = _create_placeholder()
+
+
+func _create_placeholder() -> ImageTexture:
+	var image = Image.create(96, 96, false, Image.FORMAT_RGBA8)
+	image.fill(Color(0.8, 0.2, 0.2))
+	return ImageTexture.create_from_image(image)
 
 
 func take_damage(amount: float, attacker: Node2D) -> void:
@@ -61,3 +83,4 @@ func get_hp_percentage() -> float:
 
 func can_enter(unit: Node2D) -> bool:
 	return unit.team != team_owner
+

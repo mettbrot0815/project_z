@@ -21,12 +21,14 @@ func _ready() -> void:
 
 
 func _setup_sprite() -> void:
+
+	const _SPRITE_SCRIPT = preload("res://scripts/core/sprite_manager.gd")
 	if has_node("Sprite2D"):
 		var old_sprite = $Sprite2D
 		remove_child(old_sprite)
 		old_sprite.queue_free()
 	
-	_sprite = SpriteManager.create_vehicle_sprite("missile_launcher", team_id)
+	_sprite = _SPRITE_SCRIPT.create_vehicle_sprite("missile_launcher", team_id)
 	add_child(_sprite)
 	_sprite.play("base")
 
@@ -92,3 +94,5 @@ func _find_high_value_target() -> void:
 func die(killer: Node2D) -> void:
 	CombatManager.apply_splash_damage(global_position, 200, damage * 1.5, killer)
 	super.die(killer)
+
+

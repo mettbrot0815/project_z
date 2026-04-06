@@ -50,3 +50,4 @@ func update_status() -> void:
 
 func _on_multiplier_updated(_multiplier: float) -> void:
 	update_status()
+

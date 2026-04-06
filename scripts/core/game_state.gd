@@ -61,3 +61,4 @@ func pause_game() -> void:
 
 func resume_game() -> void:
 	get_tree().paused = false
+

@@ -3,6 +3,7 @@ extends UnitBase
 # Psycho - rapid fire, machine gun, intelligence 1
 
 var _sprite: AnimatedSprite2D
+const _SPRITE_SCRIPT = preload("res://scripts/core/sprite_manager.gd")
 
 func _ready() -> void:
 	super._ready()
@@ -23,7 +24,7 @@ func _setup_sprite() -> void:
 		remove_child(old_sprite)
 		old_sprite.queue_free()
 	
-	_sprite = SpriteManager.create_robot_sprite("psycho", team_id)
+	_sprite = _SPRITE_SCRIPT.create_robot_sprite("psycho", team_id)
 	add_child(_sprite)
 	_sprite.play("walk")
 
@@ -37,3 +38,5 @@ func _process(delta: float) -> void:
 		if target and global_position.distance_to(target.global_position) < 200:
 			CombatManager.fire_projectile(global_position, target.global_position, damage, self)
 			last_fired = 0.0
+
+

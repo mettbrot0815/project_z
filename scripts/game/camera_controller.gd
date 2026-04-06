@@ -59,3 +59,4 @@ func _input(event: InputEvent) -> void:
 			target_zoom = clamp(target_zoom + zoom_speed, min_zoom, max_zoom)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			target_zoom = clamp(target_zoom - zoom_speed, min_zoom, max_zoom)
+

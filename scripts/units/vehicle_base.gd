@@ -110,3 +110,4 @@ func update_sprite_damage_state(damage_percent: float) -> void:
 	# Switch animation based on damage
 	if damage_percent >= 0.3 and _sprite.animation == "base":
 		_sprite.play("damaged")
+

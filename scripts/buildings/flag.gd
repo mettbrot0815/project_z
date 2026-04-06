@@ -83,3 +83,4 @@ func capture(new_owner: int) -> void:
 	team_owner = new_owner
 	_update_flag_sprite()
 	captured.emit(new_owner)
+

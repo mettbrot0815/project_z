@@ -17,9 +17,41 @@ var team_owner: int = 0  # Use int to match TerritoryManager.Owner enum values
 
 var production_queue: Array[String] = []
 
+var _sprite: Sprite2D
+
 
 func _ready() -> void:
 	TerritoryManager.production_multiplier_updated.connect(_on_multiplier_updated)
+	
+	_sprite = $Sprite2D
+	_update_sprite()
+
+
+func _update_sprite() -> void:
+	if not _sprite:
+		return
+	
+	var sprite_path = _get_sprite_path()
+	if sprite_path and ResourceLoader.exists(sprite_path):
+		_sprite.texture = load(sprite_path)
+	else:
+		# Create placeholder
+		_sprite.texture = _create_placeholder()
+
+
+func _get_sprite_path() -> String:
+	match factory_type:
+		"robot":
+			return "res://assets/sprites/buildings/robot/robot_0.png"
+		"vehicle":
+			return "res://assets/sprites/buildings/vehicle/tank_0.png"
+	return ""
+
+
+func _create_placeholder() -> ImageTexture:
+	var image = Image.create(64, 64, false, Image.FORMAT_RGBA8)
+	image.fill(Color(0.5, 0.5, 0.5))
+	return ImageTexture.create_from_image(image)
 
 
 func _physics_process(delta: float) -> void:
@@ -91,3 +123,4 @@ func _on_multiplier_updated(_multiplier: float) -> void:
 	# Speed scales dynamically while building is in progress
 	# This is the original Z behavior - timer speeds up when more territories are captured
 	pass
+

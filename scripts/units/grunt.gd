@@ -4,6 +4,8 @@ extends UnitBase
 
 var _sprite: AnimatedSprite2D
 
+const _SPRITE_SCRIPT = preload("res://scripts/core/sprite_manager.gd")
+
 func _ready() -> void:
 	super._ready()
 	max_hp = 50
@@ -25,7 +27,7 @@ func _setup_sprite() -> void:
 		old_sprite.queue_free()
 	
 	# Create AnimatedSprite2D with walk animation
-	_sprite = SpriteManager.create_robot_sprite("grunt", team_id)
+	_sprite = _SPRITE_SCRIPT.create_robot_sprite("grunt", team_id)
 	add_child(_sprite)
 	
 	# Set animation speed (10 FPS = 0.1 seconds per frame)
@@ -40,3 +42,4 @@ func _process(delta: float) -> void:
 	var nearest_enemy = find_nearest_enemy()
 	if nearest_enemy and global_position.distance_to(nearest_enemy.global_position) < 150:
 		attack(nearest_enemy)
+

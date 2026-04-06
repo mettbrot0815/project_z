@@ -88,3 +88,4 @@ func issue_move_order(target_pos: Vector2) -> void:
 
 func get_global_mouse_position() -> Vector2:
 	return get_viewport().get_canvas_transform().affine_inverse() * get_viewport().get_mouse_position()
+

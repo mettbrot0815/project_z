@@ -18,12 +18,14 @@ func _ready() -> void:
 
 
 func _setup_sprite() -> void:
+
+	const _SPRITE_SCRIPT = preload("res://scripts/core/sprite_manager.gd")
 	if has_node("Sprite2D"):
 		var old_sprite = $Sprite2D
 		remove_child(old_sprite)
 		old_sprite.queue_free()
 	
-	_sprite = SpriteManager.create_robot_sprite("commander", team_id)
+	_sprite = _SPRITE_SCRIPT.create_robot_sprite("commander", team_id)
 	add_child(_sprite)
 	_sprite.play("walk")
 
@@ -88,3 +90,5 @@ func find_nearest_flag() -> Node2D:
 	)
 
 	return flags[0]
+
+
