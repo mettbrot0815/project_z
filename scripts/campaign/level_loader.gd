@@ -18,6 +18,16 @@ func load_level(level_id: int) -> void:
 	current_level = level_id
 	var level_data = levels_data["levels"][level_id]
 	
+	# Initialize AI opponent
+	if GameState.ai_enabled:
+		AIController.cleanup()
+		var difficulty = AIController.Difficulty.NORMAL
+		match GameState.ai_difficulty:
+			0: difficulty = AIController.Difficulty.EASY
+			1: difficulty = AIController.Difficulty.NORMAL
+			2: difficulty = AIController.Difficulty.HARD
+		AIController.initialize(difficulty)
+	
 	show_cutscene(level_id)
 	
 	# Load terrain

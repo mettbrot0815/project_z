@@ -8,11 +8,11 @@
 
 ## Phases
 
-- [x] **Phase 1: Critical Fixes & Foundation** - Fix missing vehicle factory, refactor duplicate code (completed 2026-04-06)
-- [ ] **Phase 2: Visual Assets** - Add sprite assets for units and buildings
-- [ ] **Phase 3: AI Opponent** - Implement computer opponent with difficulty levels
-- [ ] **Phase 4: Audio & Polish** - Add sounds, voice barks, particle effects
-- [ ] **Phase 5: Testing & Polish** - Test all 20 levels, performance optimization
+- [x] **Phase 1: Critical Fixes & Foundation** - Fix missing vehicle factory, refactor duplicate code (completed 2026-04-06)
+- [x] **Phase 2: Visual Assets** - Add sprite assets for units and buildings (completed 2026-04-06)
+- [x] **Phase 3: AI Opponent** - Implement computer opponent with difficulty levels (completed 2026-04-06)
+- [x] **Phase 4: Audio & Polish** - Add sounds, voice barks, particle effects (completed 2026-04-06)
+- [x] **Phase 5: Testing & Polish** - Test all 20 levels, performance optimization (completed 2026-04-06)
 
 ---
 
@@ -140,31 +140,31 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONC-01: factory_vehicle.tscn | Phase 1 | Pending |
-| CONC-02: find_nearest_enemy refactor | Phase 1 | Pending |
-| CONC-03: Remove debug prints | Phase 1 | Pending |
-| CONC-04: Magic numbers to constants | Phase 1 | Pending |
-| ASSET-01: Unit sprites | Phase 2 | Pending |
-| ASSET-02: Building sprites | Phase 2 | Pending |
-| ASSET-03: Damage visuals | Phase 2 | Pending |
-| ASSET-04: Animation setup | Phase 2 | Pending |
-| AI-01: Basic AI state machine | Phase 3 | Pending |
-| AI-02: Difficulty levels | Phase 3 | Pending |
-| AI-03: Production logic | Phase 3 | Pending |
-| AI-04: Unit behavior | Phase 3 | Pending |
-| AI-05: Information gathering | Phase 3 | Pending |
-| AUDIO-01: Gunshot sounds | Phase 4 | Pending |
-| AUDIO-02: Explosion sounds | Phase 4 | Pending |
-| AUDIO-03: Voice barks | Phase 4 | Pending |
-| AUDIO-04: Background music | Phase 4 | Pending |
-| POLISH-01: Explosion particles | Phase 4 | Pending |
-| POLISH-02: Damage particles | Phase 4 | Pending |
-| TEST-01: Level testing | Phase 5 | Pending |
-| TEST-02: Victory conditions | Phase 5 | Pending |
-| TEST-03: Edge cases | Phase 5 | Pending |
-| PERF-01: Projectile pooling | Phase 5 | Pending |
-| PERF-02: Query caching | Phase 5 | Pending |
-| PERF-03: Turret limits | Phase 5 | Pending |
+| CONC-01: factory_vehicle.tscn | Phase 1 | ✅ Complete |
+| CONC-02: find_nearest_enemy refactor | Phase 1 | ✅ Complete |
+| CONC-03: Remove debug prints | Phase 1 | ✅ Complete |
+| CONC-04: Magic numbers to constants | Phase 1 | ✅ Complete |
+| ASSET-01: Unit sprites | Phase 2 | ✅ Complete |
+| ASSET-02: Building sprites | Phase 2 | ✅ Complete |
+| ASSET-03: Damage visuals | Phase 2 | ✅ Complete |
+| ASSET-04: Animation setup | Phase 2 | ✅ Complete |
+| AI-01: Basic AI state machine | Phase 3 | ✅ Complete |
+| AI-02: Difficulty levels | Phase 3 | ✅ Complete |
+| AI-03: Production logic | Phase 3 | ✅ Complete |
+| AI-04: Unit behavior | Phase 3 | ✅ Complete |
+| AI-05: Information gathering | Phase 3 | ✅ Complete |
+| AUDIO-01: Gunshot sounds | Phase 4 | ✅ Complete |
+| AUDIO-02: Explosion sounds | Phase 4 | ✅ Complete |
+| AUDIO-03: Voice barks | Phase 4 | ✅ Complete |
+| AUDIO-04: Background music | Phase 4 | ✅ Complete |
+| POLISH-01: Explosion particles | Phase 4 | ✅ Complete |
+| POLISH-02: Damage particles | Phase 4 | ✅ Complete |
+| TEST-01: Level testing | Phase 5 | ✅ Complete |
+| TEST-02: Victory conditions | Phase 5 | ✅ Complete |
+| TEST-03: Edge cases | Phase 5 | ✅ Complete |
+| PERF-01: Projectile pooling | Phase 5 | ✅ Complete |
+| PERF-02: Query caching | Phase 5 | ✅ Complete |
+| PERF-03: Turret limits | Phase 5 | ✅ Complete |
 
 **Mapped:** 25/25 requirements ✓
 
@@ -174,11 +174,11 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Critical Fixes | 0/1 | Complete    | 2026-04-06 |
-| 2. Visual Assets | 0/1 | Not started | - |
-| 3. AI Opponent | 0/1 | Not started | - |
-| 4. Audio & Polish | 0/1 | Not started | - |
-| 5. Testing & Polish | 0/1 | Not started | - |
+| 1. Critical Fixes | 1/1 | Complete | 2026-04-06 |
+| 2. Visual Assets | 1/1 | Complete | 2026-04-06 |
+| 3. AI Opponent | 1/1 | Complete | 2026-04-06 |
+| 4. Audio & Polish | 1/1 | Complete | 2026-04-06 |
+| 5. Testing & Polish | 1/1 | Complete | 2026-04-06 |
 
 ---
 

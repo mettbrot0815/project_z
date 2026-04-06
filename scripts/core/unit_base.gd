@@ -29,6 +29,11 @@ var target: Node2D = null
 
 var navigation_agent: NavigationAgent2D
 
+var _smoke_timer: float = 0.0
+var _smoke_particles: CPUParticles2D = null
+var _muzzle_flash: CPUParticles2D = null
+var _explosion_scene: PackedScene
+
 
 const MAP_SIZE: Vector2 = Vector2(2048, 2048)
 
@@ -36,13 +41,17 @@ const MAP_SIZE: Vector2 = Vector2(2048, 2048)
 func _ready() -> void:
 	navigation_agent = $NavigationAgent2D
 	navigation_agent.max_speed = move_speed
-	hp = max_hp  # Initialize hp from max_hp
+	hp = max_hp
+	
+	_explosion_scene = preload("res://scenes/effects/explosion.tscn")
+	_setup_smoke_particles()
+	_setup_muzzle_flash()
 	
 	if intelligence > 0:
 		set_process_internal(true)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if hp <= 0:
 		return
 	
@@ -53,9 +62,14 @@ func _physics_process(_delta: float) -> void:
 	velocity = global_position.direction_to(next_pos) * move_speed
 	move_and_slide()
 	
-	# Clamp position to map boundaries
 	global_position.x = clamp(global_position.x, 0, MAP_SIZE.x)
 	global_position.y = clamp(global_position.y, 0, MAP_SIZE.y)
+
+
+func _process(delta: float) -> void:
+	if hp <= 0:
+		return
+	_update_damage_smoke(delta)
 
 
 func move_to(target_position: Vector2) -> void:
@@ -77,7 +91,71 @@ func take_damage(amount: float, attacker: Node2D) -> void:
 
 func die(killer: Node2D) -> void:
 	died.emit(killer)
+	
+	spawn_death_effect()
+	AudioManager.play_unit_death()
+	
 	queue_free()
+
+
+func spawn_death_effect() -> void:
+	if _explosion_scene == null:
+		_explosion_scene = preload("res://scenes/effects/explosion.tscn")
+	
+	var explosion = _explosion_scene.instantiate()
+	explosion.explode(global_position, 0.5, 0.8)
+	get_tree().current_scene.add_child(explosion)
+
+
+func spawn_muzzle_flash(direction: Vector2) -> void:
+	if _muzzle_flash == null:
+		return
+	_muzzle_flash.direction = direction
+	_muzzle_flash.emitting = true
+
+
+func _setup_smoke_particles() -> void:
+	_smoke_particles = CPUParticles2D.new()
+	_smoke_particles.emitting = false
+	_smoke_particles.amount = 3
+	_smoke_particles.lifetime = 1.0
+	_smoke_particles.direction = Vector2(0, -1)
+	_smoke_particles.initial_velocity_min = 20
+	_smoke_particles.initial_velocity_max = 40
+	_smoke_particles.spread = 45
+	_smoke_particles.gravity = Vector2(0, -30)
+	var smoke_color = Color(0.3, 0.3, 0.3, 0.5)
+	_smoke_particles.color = smoke_color
+	add_child(_smoke_particles)
+
+
+func _setup_muzzle_flash() -> void:
+	_muzzle_flash = CPUParticles2D.new()
+	_muzzle_flash.emitting = false
+	_muzzle_flash.one_shot = true
+	_muzzle_flash.amount = 5
+	_muzzle_flash.lifetime = 0.08
+	_muzzle_flash.direction = Vector2(1, 0)
+	_muzzle_flash.initial_velocity_min = 50
+	_muzzle_flash.initial_velocity_max = 100
+	_muzzle_flash.spread = 30
+	_muzzle_flash.color = Color(1.0, 0.9, 0.5)
+	_muzzle_flash.local_coords = true
+	add_child(_muzzle_flash)
+
+
+func _update_damage_smoke(delta: float) -> void:
+	if _smoke_particles == null:
+		return
+	
+	var hp_percent = hp / max_hp
+	if hp_percent < 0.5:
+		_smoke_timer += delta
+		if _smoke_timer > 0.3:
+			_smoke_timer = 0.0
+			_smoke_particles.emitting = true
+	else:
+		_smoke_particles.emitting = false
 
 
 func get_team() -> Team:
@@ -250,3 +328,11 @@ func _strategic_behaviour() -> void:
 		_find_nearest_flag()
 	else:
 		_find_nearest_enemy()
+
+
+func is_moving() -> bool:
+	return not navigation_agent.is_navigation_finished()
+
+
+func is_idle() -> bool:
+	return navigation_agent.is_navigation_finished()

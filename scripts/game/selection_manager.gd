@@ -10,6 +10,13 @@ var is_dragging_selection: bool = false
 
 var groups: Array = [ [], [], [], [], [], [], [], [], [], [] ] # 0-9 hotkey groups
 
+var _selection_rings: Dictionary = {}
+var _selection_ring_scene: PackedScene
+
+
+func _ready() -> void:
+	_selection_ring_scene = preload("res://scenes/effects/selection_ring.tscn")
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -68,13 +75,47 @@ func finish_selection() -> void:
 func set_selection(units: Array) -> void:
 	for unit in selected_units:
 		unit.set("selected", false)
+		_remove_selection_ring(unit)
 
 	selected_units = units
 
 	for unit in selected_units:
 		unit.set("selected", true)
+		_add_selection_ring(unit)
+
+	if selected_units.size() > 0:
+		AudioManager.play_ui_select()
 
 	selection_changed.emit(selected_units)
+
+
+func _add_selection_ring(unit: Node2D) -> void:
+	if _selection_ring_scene == null:
+		return
+	
+	if _selection_rings.has(unit):
+		return
+	
+	var ring = _selection_ring_scene.instantiate()
+	ring.global_position = unit.global_position
+	ring.set_team(true)
+	get_tree().current_scene.add_child(ring)
+	_selection_rings[unit] = ring
+
+
+func _remove_selection_ring(unit: Node2D) -> void:
+	if _selection_rings.has(unit):
+		_selection_rings[unit].queue_free()
+		_selection_rings.erase(unit)
+
+
+func _process(_delta: float) -> void:
+	for unit in _selection_rings:
+		if is_instance_valid(unit):
+			_selection_rings[unit].global_position = unit.global_position
+		else:
+			_selection_rings[unit].queue_free()
+			_selection_rings.erase(unit)
 
 
 func clear_selection() -> void:

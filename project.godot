@@ -13,7 +13,7 @@ config_version=5
 config/name="Z (1996) Recreation"
 config/description="Faithful recreation of the 1996 Bitmap Brothers real-time strategy game"
 config/version="0.1.0"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.6")
 
 [autoload]
@@ -22,6 +22,8 @@ TerritoryManager="*res://scripts/core/territory_manager.gd"
 CombatManager="*res://scripts/core/combat_manager.gd"
 GameState="*res://scripts/core/game_state.gd"
 SelectionManager="*res://scripts/game/selection_manager.gd"
+AIController="*res://scripts/game/ai_controller.gd"
+AudioManager="*res://scripts/core/audio_manager.gd"
 
 [debug]
 

@@ -10,6 +10,9 @@ var player_owner: int = 1 # RED
 var game_running: bool = true
 var game_time: float = 0.0
 
+var ai_enabled: bool = true
+var ai_difficulty: int = 1  # 0=EASY, 1=NORMAL, 2=HARD
+
 
 func _physics_process(delta: float) -> void:
 	if not game_running:
