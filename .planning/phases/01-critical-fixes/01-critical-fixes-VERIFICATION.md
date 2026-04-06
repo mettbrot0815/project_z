@@ -1,27 +1,25 @@
 ---
 phase: 01-critical-fixes
 verified: 2026-04-06T18:45:00Z
-status: gaps_found
-score: 4/5 must-haves verified
+updated: 2026-04-06T19:00:00Z
+status: passed
+score: 5/5 must-haves verified
 gaps:
   - truth: "Level 2+ vehicle factories spawn correct vehicle types"
-    status: partial
-    reason: "missile_launcher.gd calls find_enemy_groups() which is defined only in howitzer.gd - not in UnitBase. This will cause runtime error when missile_launcher tries to find groups."
+    status: resolved
+    resolution: "Added find_enemy_groups() to UnitBase at lines 112-130. Fixed howitzer.gd to use team (enum) instead of team_id (int)."
     artifacts:
-      - path: "scripts/units/missile_launcher.gd"
-        issue: "Calls find_enemy_groups() at lines 49 and 68, but method not defined in UnitBase or missile_launcher - only in howitzer.gd"
+      - path: "scripts/core/unit_base.gd"
+        fix: "Added find_enemy_groups() method using GROUP_SIZE_THRESHOLD and GROUP_DETECTION_RADIUS class variables"
       - path: "scripts/units/howitzer.gd"
-        issue: "find_enemy_groups() uses team_id instead of team (enum) - inconsistent with UnitBase.find_nearest_enemy()"
-    missing:
-      - "find_enemy_groups() method in UnitBase or missile_launcher.gd itself"
-      - "Consistent use of team (enum) vs team_id (int) in find_enemy_groups"
+        fix: "Changed unit.team != team_id to unit.team != team for consistency"
 ---
 
 # Phase 1: Critical Fixes Verification Report
 
 **Phase Goal:** Fix blocking bugs and refactor tech debt to enable gameplay
 **Verified:** 2026-04-06
-**Status:** gaps_found
+**Status:** passed
 **Re-verification:** No - initial verification
 
 ## Goal Achievement

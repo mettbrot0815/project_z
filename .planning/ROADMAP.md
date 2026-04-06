@@ -8,7 +8,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Critical Fixes & Foundation** - Fix missing vehicle factory, refactor duplicate code
+- [x] **Phase 1: Critical Fixes & Foundation** - Fix missing vehicle factory, refactor duplicate code (completed 2026-04-06)
 - [ ] **Phase 2: Visual Assets** - Add sprite assets for units and buildings
 - [ ] **Phase 3: AI Opponent** - Implement computer opponent with difficulty levels
 - [ ] **Phase 4: Audio & Polish** - Add sounds, voice barks, particle effects
@@ -36,7 +36,7 @@
 3. UnitBase contains shared `find_nearest_enemy()` method used by all units
 4. Console output is clean during normal gameplay (no debug spam)
 
-**Plans:** TBD
+**Plans:** 1/1 plans complete
 
 ---
 
@@ -174,7 +174,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Critical Fixes | 0/1 | Not started | - |
+| 1. Critical Fixes | 0/1 | Complete    | 2026-04-06 |
 | 2. Visual Assets | 0/1 | Not started | - |
 | 3. AI Opponent | 0/1 | Not started | - |
 | 4. Audio & Polish | 0/1 | Not started | - |
