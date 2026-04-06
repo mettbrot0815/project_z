@@ -80,4 +80,3 @@ func _on_flag_overlap(territory_id: int, body: Node2D) -> void:
 
 func get_territory_count(team_owner: Owner) -> int:
 	return owned_territories[team_owner]
-

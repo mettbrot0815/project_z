@@ -61,7 +61,7 @@ func load_level(level_id: int) -> void:
 	set_planet_theme(level_data["planet"])
 
 
-func set_planet_theme(planet: String) -> void:
+func set_planet_theme(_planet: String) -> void:
 	# Skip theme setting for now - canvas_modulate access is different in Godot 4
 	# This can be implemented later with proper viewport reference
 	pass
@@ -86,4 +86,3 @@ func advance_level() -> void:
 		load_level(current_level + 1)
 	else:
 		print("Campaign Complete!")
-

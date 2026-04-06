@@ -68,4 +68,3 @@ func apply_splash_damage(origin: Vector2, radius: float, damage: float, attacker
 			var falloff = 1.0 - (dist / radius)
 			if falloff > 0:
 				unit.take_damage(damage * falloff, attacker)
-

@@ -7,6 +7,8 @@ extends VehicleBase
 
 var target_to_repair: Node2D = null
 
+const _SPRITE_SCRIPT = preload("res://scripts/core/sprite_manager.gd")
+
 
 func _ready() -> void:
 	super._ready()
@@ -22,8 +24,6 @@ func _ready() -> void:
 
 
 func _setup_sprite() -> void:
-
-	const _SPRITE_SCRIPT = preload("res://scripts/core/sprite_manager.gd")
 	if has_node("Sprite2D"):
 		var old_sprite = $Sprite2D
 		remove_child(old_sprite)

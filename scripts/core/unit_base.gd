@@ -250,4 +250,3 @@ func _strategic_behaviour() -> void:
 		_find_nearest_flag()
 	else:
 		_find_nearest_enemy()
-
