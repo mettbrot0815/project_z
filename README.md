@@ -29,6 +29,31 @@ godot project.godot
 
 ---
 
+## 🎮 How to Play
+
+### Objective
+**Command your army and conquer the planet!** Build factories, research technologies, and deploy units to capture enemy territory.
+
+### Core Gameplay Loop
+1. **Select Units** - Click on your units (blue squares) to select them
+2. **Move Units** - Right-click on the map to move your units
+3. **Build Factories** - Click on empty terrain to place factories (costs resources)
+4. **Research Tech** - Upgrade factories to unlock better units
+5. **Deploy Units** - Build and command your army into battle
+
+### Win Conditions
+- **Capture the Planet** - Own the majority of terrain tiles
+- **Destroy Enemy Units** - Eliminate all opposing forces
+- **Complete Mission Objectives** - Some levels have specific goals
+
+### Tips for New Players
+- **Patience Pays Off** - Build up your forces before attacking
+- **Control the Center** - Factories in the middle are most valuable
+- **Watch Your Economy** - Balance production with expansion
+- **Use Terrain** - Some units have advantages on certain ground types
+
+---
+
 ## 🎮 Game Features
 
 | Feature | Description |
