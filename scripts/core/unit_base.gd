@@ -88,6 +88,22 @@ func get_team_id() -> int:
 	return team_id
 
 
+# Public method for finding nearest enemy (used by child classes)
+func find_nearest_enemy() -> Node2D:
+	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
+		return unit.team != team and unit.hp > 0 and unit != self
+	)
+	
+	if enemies.size() == 0:
+		return null
+	
+	enemies.sort_custom(func(a, b):
+		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
+	
+	return enemies[0]
+
+
 # Intelligence based autonomous AI
 func _process(_delta: float) -> void:
 	if team == Team.NEUTRAL:

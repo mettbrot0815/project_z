@@ -39,4 +39,3 @@ func impact() -> void:
 	# Explode on impact - do splash damage
 	if CombatManager:
 		CombatManager.apply_splash_damage(global_position, 64, 50, null)
-		print("Flying turret exploded!")

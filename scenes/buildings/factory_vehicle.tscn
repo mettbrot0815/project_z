@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://factory_vehicle_scene"]
+
+[ext_resource type="Script" path="res://scripts/core/factory.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_factory"]
+size = Vector2(48, 32)
+
+[node name="FactoryVehicle" type="StaticBody2D"]
+script = ExtResource("1")
+factory_type = "vehicle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_factory")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_factory")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = null
+region_enabled = true
+region_rect = Rect2(0, 128, 48, 32)

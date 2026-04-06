@@ -77,7 +77,8 @@ func show_cutscene(level_id: int) -> void:
 	}
 	
 	if cutscenes.has(level_id):
-		print("CUTSCENE: " + cutscenes[level_id])
+		# Cutscene dialogue would be displayed here
+		pass
 
 
 func advance_level() -> void:

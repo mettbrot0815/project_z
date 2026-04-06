@@ -2,6 +2,9 @@ extends UnitBase
 
 # Howitzer - stationary artillery, high damage, splash, slow reload
 
+const GROUP_SIZE_THRESHOLD: int = 3
+const GROUP_DETECTION_RADIUS: float = 80.0
+
 @export var turret_rotation_speed: float = 1.0
 @export var range: float = 500.0
 @export var splash_radius: float = 64.0
@@ -68,9 +71,9 @@ func find_enemy_groups() -> Array:
 	var groups = []
 	for enemy in enemies:
 		var nearby = enemies.filter(func(e):
-			return e != enemy and e.global_position.distance_to(enemy.global_position) < 80
+			return e != enemy and e.global_position.distance_to(enemy.global_position) < GROUP_DETECTION_RADIUS
 		)
-		if nearby.size() >= 3:
+		if nearby.size() >= GROUP_SIZE_THRESHOLD:
 			var center = Vector2.ZERO
 			for e in nearby:
 				center += e.global_position
@@ -79,18 +82,3 @@ func find_enemy_groups() -> Array:
 
 	groups.sort_custom(func(a, b): return a["count"] > b["count"])
 	return groups
-
-
-func find_nearest_enemy() -> Node2D:
-	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != team_id and unit.hp > 0 and unit != self
-	)
-
-	if enemies.size() == 0:
-		return null
-
-	enemies.sort_custom(func(a, b):
-		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
-	)
-
-	return enemies[0]

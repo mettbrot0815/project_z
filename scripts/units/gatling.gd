@@ -38,18 +38,3 @@ func _process(delta: float) -> void:
 				last_fired = 0.0
 	else:
 		last_fired = 0.0
-
-
-func find_nearest_enemy() -> Node2D:
-	var enemies = get_tree().get_nodes_in_group("selectable").filter(func(unit):
-		return unit.team != team_id and unit.hp > 0 and unit != self
-	)
-
-	if enemies.size() == 0:
-		return null
-
-	enemies.sort_custom(func(a, b):
-		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
-	)
-
-	return enemies[0]

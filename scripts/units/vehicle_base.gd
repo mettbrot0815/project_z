@@ -92,12 +92,6 @@ func update_damage_visuals() -> void:
 
 
 func set_damage_state(state: int) -> void:
-	match state:
-		0:
-			print("%s: No damage" % unit_type)
-		1:
-			print("%s: Smoking" % unit_type)
-		2:
-			print("%s: On fire" % unit_type)
-		3:
-			print("%s: Critical damage" % unit_type)
+	# Visual damage states: 0=clean, 1=smoking, 2=on fire, 3=critical
+	# Implementation would update sprite frame here
+	pass
