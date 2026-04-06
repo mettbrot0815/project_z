@@ -44,14 +44,15 @@ func kill_driver() -> void:
 	if driver_scene == null:
 		push_error("VehicleBase: Failed to load driver scene")
 	else:
-		var driver = driver_scene.instantiate()
+	var driver = driver_scene.instantiate()
 		if driver == null:
 			push_error("VehicleBase: Failed to instantiate driver")
 		else:
 			driver.global_position = global_position + driver_hitbox_offset
 			driver.velocity = Vector2(randf_range(-80, 80), -150)
-			if GameManager:
-				GameManager.units_container.add_child(driver)
+			var game_manager = get_tree().get_node_or_null("GameManager")
+			if game_manager:
+				game_manager.units_container.add_child(driver)
 			else:
 				add_child(driver)
 	

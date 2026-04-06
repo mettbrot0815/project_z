@@ -103,14 +103,15 @@ func complete_production() -> void:
 	unit.team = team_owner  # Direct assignment as int (0=NEUTRAL, 1=RED, 2=BLUE)
 	unit.global_position = global_position + Vector2(randf_range(-32, 32), 0)
 	# Use units_container from GameManager if available, otherwise fallback
-if GameManager:
-    GameManager.units_container.add_child(unit)
-else:
-    # Fallback - add to current scene
-    if get_parent() and get_parent().has_node("Units"):
-        get_parent().get_node("Units").add_child(unit)
-    else:
-        add_child(unit)
+	var game_manager = get_tree().get_node_or_null("GameManager")
+	if game_manager:
+		game_manager.units_container.add_child(unit)
+	else:
+		# Fallback - add to current scene
+		if get_parent() and get_parent().has_node("Units"):
+			get_parent().get_node("Units").add_child(unit)
+		else:
+			add_child(unit)
 	production_completed.emit(unit)
 	
 	current_build = ""

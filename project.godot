@@ -24,6 +24,7 @@ GameState="*res://scripts/core/game_state.gd"
 SelectionManager="*res://scripts/game/selection_manager.gd"
 AIController="*res://scripts/game/ai_controller.gd"
 AudioManager="*res://scripts/core/audio_manager.gd"
+GameManager="*res://scripts/game/game_manager.gd"
 
 [debug]
 
