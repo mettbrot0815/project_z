@@ -2,9 +2,6 @@ extends UnitBase
 
 # Howitzer - stationary artillery, high damage, splash, slow reload
 
-const GROUP_SIZE_THRESHOLD: int = 3
-const GROUP_DETECTION_RADIUS: float = 80.0
-
 @export var turret_rotation_speed: float = 1.0
 @export var range: float = 500.0
 @export var splash_radius: float = 64.0

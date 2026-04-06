@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1775440473
+::res://::1775440714
 AGENTS.md::TextFile::-1::1775278654::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1775263047::0::1::::<><><>0<>0<><>::
 ::res://assets/::1775435055
@@ -46,7 +46,7 @@ game_state.gd::GDScript::2561909240154585915::1775434834::0::1::::<>Node<><>0<>0
 territory_manager.gd::GDScript::4638900449432038448::1775435005::0::1::::<>Node<><>0<>0<><>::
 unit_base.gd::GDScript::824481764092133283::1775440442::0::1::::UnitBase<>CharacterBody2D<><>0<>0<><>::
 ::res://scripts/effects/::1775434290
-flying_turret.gd::GDScript::3857739401639918411::1775440432::0::1::::FlyingTurret<>CharacterBody2D<><>0<>0<><>::
+flying_turret.gd::GDScript::3857739401639918411::1775440558::0::1::::FlyingTurret<>CharacterBody2D<><>0<>0<><>::
 ::res://scripts/game/::1775278079
 camera_controller.gd::GDScript::7004424823153902740::1775263047::0::1::::<>Camera2D<><>0<>0<><>::
 game_manager.gd::GDScript::3491775021887954418::1775440074::0::1::::<>Node2D<><>0<>0<><>::
@@ -61,12 +61,12 @@ driver.gd::GDScript::3804998788706518965::1775434379::0::1::::Driver<>CharacterB
 gatling.gd::GDScript::99415664160135989::1775440128::0::1::::<>UnitBase<><>0<>0<><>::
 grunt.gd::GDScript::7224302991083558002::1775440102::0::1::::<>UnitBase<><>0<>0<><>::
 heavy_tank.gd::GDScript::2924973199656045594::1775440113::0::1::::<>VehicleBase<><>0<>0<><>::
-howitzer.gd::GDScript::8570371422349275433::1775440467::0::1::::<>UnitBase<><>0<>0<><>::
+howitzer.gd::GDScript::8570371422349275433::1775440685::0::1::::<>UnitBase<><>0<>0<><>::
 jeep.gd::GDScript::4043704671912710801::1775440168::0::1::::<>VehicleBase<><>0<>0<><>::
 laser.gd::GDScript::678201735788327501::1775440122::0::1::::<>UnitBase<><>0<>0<><>::
 light_tank.gd::GDScript::8569671115435485999::1775440176::0::1::::<>VehicleBase<><>0<>0<><>::
 medium_tank.gd::GDScript::7834104776340175260::1775440110::0::1::::<>VehicleBase<><>0<>0<><>::
-missile_launcher.gd::GDScript::2000922400473953658::1775440437::0::1::::<>VehicleBase<><>0<>0<><>::
+missile_launcher.gd::GDScript::2000922400473953658::1775440682::0::1::::<>VehicleBase<><>0<>0<><>::
 psycho.gd::GDScript::6343162356930308418::1775440105::0::1::::<>UnitBase<><>0<>0<><>::
 sniper.gd::GDScript::541207795267979394::1775440133::0::1::::<>UnitBase<><>0<>0<><>::
 tough.gd::GDScript::143384973440151149::1775440164::0::1::::<>UnitBase<><>0<>0<><>::

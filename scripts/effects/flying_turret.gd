@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 # Flying turret effect - explodes when tank dies
 
-var velocity: Vector2 = Vector2.ZERO
+var velocity_vector: Vector2 = Vector2.ZERO
 var life_time: float = 2.0
 var timer: float = 0.0
 
@@ -21,11 +21,11 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Apply gravity
-	velocity.y += GRAVITY * delta
-	velocity = velocity.limit_length(500)
+	velocity_vector.y += GRAVITY * delta
+	velocity_vector = velocity_vector.limit_length(500)
 	
 	# Move turret
-	global_position += velocity * delta
+	global_position += velocity_vector * delta
 	
 	# Fall to ground
 	if global_position.y > 1000:  # Ground level
