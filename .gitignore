@@ -111,8 +111,18 @@ debug_build/
 
 # =============================================================================
 # Resource Files (optional - can be large)
-# =============================================================================
+# Resource Files (optional - can be large)
 # Uncomment if you want to exclude large asset imports
 # *.tres
 # *.uv
 # *.ub
+
+# =============================================================================
+# Godot 4.6 Additional Files
+# =============================================================================
+# Godot scene auto-save
+*.autosave
+# Export templates
+export_templates/
+# Project settings backups
+project.settings.backup
